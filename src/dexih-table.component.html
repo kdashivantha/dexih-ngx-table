@@ -74,8 +74,8 @@
                     <th *ngIf="enableRowActions">Action</th>
                     <th *ngIf="enableRowStatus">Status</th>
                     <th class="text-center" *ngFor="let column of columns">
-                        <i *ngIf="sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
-                        <i *ngIf="sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
+                        <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
+                        <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
                         {{column.title}}
                     </th>
                 </tr>

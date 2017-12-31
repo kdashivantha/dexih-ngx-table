@@ -1,5 +1,17 @@
 # dexih-ngx-table
 
+dexih-ngx-table is an Angular component for adding data driven tables to applications.
+
+## Features
+
+* Search filtering across the table.
+* Column sorting (ascdending/descending)
+* Column formatting (such as string, numeric, date, code etc.)
+* Row single/multi selection with dynamic/hidden button selection.
+* Drap and drop row sorting.
+* Automatic save to csv file.
+
+
 ## Installation
 
 To install this library, run:
@@ -8,6 +20,11 @@ To install this library, run:
 $ npm install dexih-ngx-table --save
 ```
 
+## Sample
+
+For a quick demo and sample code see the plnkr here:
+http://plnkr.co/edit/uyPfy4930iI0E0aPv0Mi?p=preview
+ 
 ## Consuming your library
 
 Once you have published your library to npm, you can import your library in any Angular application by running:
@@ -25,7 +42,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SampleModule } from 'dexih-ngx-table';
+import { DexihTableModule } from 'dexih-ngx-table';
 
 @NgModule({
   declarations: [
@@ -34,8 +51,8 @@ import { SampleModule } from 'dexih-ngx-table';
   imports: [
     BrowserModule,
 
-    // Specify your library as an import
-    LibraryModule
+    // Import the TableModule
+    DexihTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
