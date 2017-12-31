@@ -1,0 +1,123 @@
+<div class="no-padding">
+    <div class="dexih-table-toolbar">
+
+        <div class="row">
+            <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
+                <div class="form-inline">
+                    <a *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn-sm btn-primary" title="Save the current data to a csv file.">
+                        <i class="fa fa-save"></i>&nbsp;
+                        <span class="hidden-sm hidden-xs">Save</span>
+                    </a>
+
+                    <ng-template *ngIf="tableItems" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
+                        [ngTemplateOutletContext]="items">
+                    </ng-template>
+                    &nbsp;
+                    <ng-template *ngIf="enableSingleSelectActions && selectedItemsCount == 1" [ngTemplateOutlet]="selectedItemActionsTemplate"
+                        [ngTemplateOutletContext]="{item: currentSelectedItems[0]}" [ngTemplateOutletContext]="item">
+                    </ng-template>
+                    &nbsp;
+                    <ng-template *ngIf="enableMultiSelectActions && selectedItemsCount > 0" [ngTemplateOutlet]="selectedItemsActionsTemplate"
+                        [ngTemplateOutletContext]="{items: currentSelectedItems}" [ngTemplateOutletContext]="items">
+                    </ng-template>
+
+                </div>
+            </div>
+            <hr class="row hidden-lg hidden-md" />
+            <div *ngIf="enableFilter" class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+                <div [ngClass]="{disabled : manualSort}" class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </span>
+                    <input [ngModel]="filterString" [formControl]="filterControl" class="form-control input-md" placeholder="Enter search..."
+                        type="search" name="filterString" />
+                </div>
+            </div>
+            <div *ngIf="enableSort" class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
+                <div dropdown class="btn-group">
+                    <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
+                        <i class="glyphicon glyphicon-sort"></i>
+                        Sort
+                        <i class="glyphicon glyphicon-menu-down"></i>
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu pull-right">
+                        <li class="dropdown-item" ><a href="#" (click)="sortChange('', 1)">(no sort)</a></li>
+                        <li  *ngIf="enableManualSort" class="dropdown-item" ><a href="#" (click)="sortChange('manual1235135490543', 1)">Manual sort</a></li>
+                        <ng-template ngFor let-column [ngForOf]="columns" >
+                            <li  *ngIf="column.name" class="dropdown-item" ><a href="#" (click)="sortChange(column.name, 1)">{{column.title}} (asc)</a></li>
+                            <li  *ngIf="column.name" class="dropdown-item" ><a href="#" (click)="sortChange(column.name, -1)">{{column.title}} (desc)</a></li>
+                        </ng-template>
+                    </ul>
+                </div>
+
+                <!-- <select (change)="sortChange($event.target.value)" [(ngModel)]="sortColumn" class="form-control">
+                                <option value="">(no sort)</option>
+                                <option *ngIf="enableManualSort" value="manual1235135490543">Manual sort</option>
+                                <ng-template ngFor let-column [ngForOf]="columns" >
+                                <option *ngIf="column.name" [value]="column.name">{{column.title}}</option>
+                                </ng-template>
+                            </select> -->
+
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="tableItems" [ngClass]="{enableResponsive: table-responsive}">
+        <table [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
+            <thead>
+                <tr>
+                    <th *ngIf="enableMultiSelect" width="1%">
+                        <input type="checkbox" [(ngModel)]="selectAllState" (ngModelChange)="selectAll()">
+                    </th>
+                    <th *ngIf="manualSort" width="1%"></th>
+                    <th *ngIf="enableRowActions">Action</th>
+                    <th *ngIf="enableRowStatus">Status</th>
+                    <th class="text-center" *ngFor="let column of columns">
+                        <i *ngIf="sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
+                        <i *ngIf="sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
+                        {{column.title}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="tableItems.length == 0">
+                    <td [attr.colspan]="columnCount">There are no rows available.</td>
+                </tr>
+                <ng-template ngFor let-tableItem [ngForOf]="tableItems" let-i="index">
+                    <tr *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected">
+                        <td *ngIf="enableMultiSelect">
+                            <input type="checkbox" [(ngModel)]="tableItem.isSelected" (ngModelChange)="itemSelected(true)">
+                        </td>
+                        <td *ngIf="manualSort">
+                            <button class="btn btn-sm btn-primary" dnd-sortable [sortableIndex]="i" (onDropSuccess)="manualSortChange()" title="Drag to move row to another position">
+                                <i class="fa fa-sort"></i>
+                            </button>
+                        </td>
+                        <td *ngIf="enableRowActions">
+                            <ng-template [ngTemplateOutlet]="rowActionTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
+                            </ng-template>
+                        </td>
+                        <td *ngIf="enableRowStatus">
+                            <ng-template [ngTemplateOutlet]="rowStatusTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
+                            </ng-template>
+                        </td>
+                        <td *ngFor="let column of columns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
+                            (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
+                            <dexih-table-cell [column]="column" [row]="data[tableItem.index]"></dexih-table-cell>
+                        </td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!tableItems">
+        <div class="row">
+            <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
+                <h3 class="ajax-loading-animation">&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-cog fa-spin"></i> Data is loading...</h3>
+            </div>
+        </div>
+    </div>
+</div>

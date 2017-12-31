@@ -1,0 +1,14 @@
+<div [class]="row[column.class]" [ngSwitch]="column.format" [ngStyle]="{'text-align': alignment}">
+        <!-- <dexih-invalid-form-icon *ngIf="column.control" [control]="row[column.control]"></dexih-invalid-form-icon> -->
+        <i *ngIf="column.iconClass" [class]="row[column.iconClass]"></i>
+        <div *ngIf="column.control && !column.name; else other_content">
+            {{row[column.control].value}}
+        </div>
+        <ng-template #other_content>
+            <input *ngSwitchCase="'Boolean'" type="checkbox" disabled [ngModel]="row[column.name]" />
+            <span *ngSwitchCase="'Date'">{{formattedValue}}</span>
+            <span *ngSwitchCase="'Time'">{{formattedValue}}</span>
+            <pre *ngSwitchCase="'Code'"><code>{{value}}</code></pre>
+            <div *ngSwitchDefault [innerHTML]="value"></div>
+        </ng-template>
+    </div>

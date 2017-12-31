@@ -1,0 +1,25 @@
+<dexih-table 
+    [enableMultiSelect]="true" 
+    [enableRowActions]="false" 
+    [enableRowStatus]="true" 
+    [enableSingleSelectActions]="true" 
+    [enableManualSort]="true"
+    (rowClick)="selectedItem($event)"
+
+    [enableMultiSelectActions]="true" [columns]="columns" [tableData]="tableData">
+    <ng-template #selectedItemAction select="selectedItemAction" let-item="item">
+            <button class="btn btn-primary" (click)="selectedItem(item)">single item</button>
+        </ng-template>
+
+    <ng-template #selectedItemsAction select="selectedItemsAction" let-items="items">
+        <button class="btn btn-primary" (click)="selectedItems(items)">seleted items</button>
+    </ng-template>
+
+    <ng-template #actions let-items="items">
+        <button class="btn btn-primary" (click)="selectedItems(items)">any items</button>
+    </ng-template>
+
+    <ng-template #rowStatus select="rowStatus" let-table="item">
+        row status
+    </ng-template>
+</dexih-table>
