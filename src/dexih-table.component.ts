@@ -54,6 +54,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     currentSelectedItems: Array<any>;
 
     tableItems: Array<TableItem>;
+    public currentColumns: Column[];
 
     selectedItemsCount: number;
     private selectAllState: boolean;
@@ -84,10 +85,13 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     ngOnChanges(changes: SimpleChanges) {
         if (this.columns) {
             this.columnCount = this.columns.length;
-            if (this.enableMultiSelect) { this.columnCount++; }
-            if (this.enableRowActions) { this.columnCount++; }
-            if (this.enableRowStatus) { this.columnCount++; }
+        } else if (this.data) {
+            this.columnCount = this.data.keys.length;
         }
+
+        if (this.enableMultiSelect) { this.columnCount++; }
+        if (this.enableRowActions) { this.columnCount++; }
+        if (this.enableRowStatus) { this.columnCount++; }
     }
 
     ngDoCheck() {
@@ -117,8 +121,20 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     }
 
     doLoadData(data: Array<any>) {
-        if (data) {
+        if (data && data.length > 0) {
             this.data = data;
+
+            // console.debug(`key length ${data[0].keys.length}`);
+            // if column formatting not specified, then create
+            if (this.columns) {
+                this.currentColumns = this.columns;
+            } else {
+                this.currentColumns = [];
+                let properties = Object.getOwnPropertyNames(data[0]);
+                properties.forEach(property => {
+                    this.currentColumns.push(<Column> { name: property, title: property});
+                });
+            }
 
             // reset the tableItems array.
             this.tableItems = new Array(this.data.length);
@@ -186,12 +202,11 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
                 this.data.forEach((row, index) => {
                     let isMatch = false;
-                    this.columns.forEach(column => {
+                    this.currentColumns.forEach(column => {
                         if (String(this.fetchFromObject(row, column.name)).toLowerCase().includes(filter)) {
                             isMatch = true;
                         }
                     });
-
                     this.tableItems[index].isFiltered = !isMatch;
                 });
             } else {
@@ -273,7 +288,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     saveCsv() {
         // create a header row.
-        let csvContent = this.columns.map(c => '"' + c.title + '"').join(',') + '\n';
+        let csvContent = this.currentColumns.map(c => '"' + c.title + '"').join(',') + '\n';
 
         this.data.forEach(row => {
             csvContent += this.processRow(row);

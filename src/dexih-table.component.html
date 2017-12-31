@@ -33,7 +33,7 @@
                         type="search" name="filterString" />
                 </div>
             </div>
-            <div *ngIf="enableSort" class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
+            <div *ngIf="enableSort && currentColumns" class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
                 <div dropdown class="btn-group">
                     <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
                         <i class="glyphicon glyphicon-sort"></i>
@@ -43,7 +43,7 @@
                     <ul *dropdownMenu class="dropdown-menu pull-right">
                         <li class="dropdown-item" ><a href="#" (click)="sortChange('', 1)">(no sort)</a></li>
                         <li  *ngIf="enableManualSort" class="dropdown-item" ><a href="#" (click)="sortChange('manual1235135490543', 1)">Manual sort</a></li>
-                        <ng-template ngFor let-column [ngForOf]="columns" >
+                        <ng-template ngFor let-column [ngForOf]="currentColumns" >
                             <li  *ngIf="column.name" class="dropdown-item" ><a href="#" (click)="sortChange(column.name, 1)">{{column.title}} (asc)</a></li>
                             <li  *ngIf="column.name" class="dropdown-item" ><a href="#" (click)="sortChange(column.name, -1)">{{column.title}} (desc)</a></li>
                         </ng-template>
@@ -53,7 +53,7 @@
                 <!-- <select (change)="sortChange($event.target.value)" [(ngModel)]="sortColumn" class="form-control">
                                 <option value="">(no sort)</option>
                                 <option *ngIf="enableManualSort" value="manual1235135490543">Manual sort</option>
-                                <ng-template ngFor let-column [ngForOf]="columns" >
+                                <ng-template ngFor let-column [ngForOf]="currentColumns" >
                                 <option *ngIf="column.name" [value]="column.name">{{column.title}}</option>
                                 </ng-template>
                             </select> -->
@@ -66,14 +66,14 @@
     <div *ngIf="tableItems" [ngClass]="{enableResponsive: table-responsive}">
         <table [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
             <thead>
-                <tr>
+                <tr *ngIf="currentColumns">
                     <th *ngIf="enableMultiSelect" width="1%">
                         <input type="checkbox" [(ngModel)]="selectAllState" (ngModelChange)="selectAll()">
                     </th>
                     <th *ngIf="manualSort" width="1%"></th>
                     <th *ngIf="enableRowActions">Action</th>
                     <th *ngIf="enableRowStatus">Status</th>
-                    <th class="text-center" *ngFor="let column of columns">
+                    <th class="text-center" *ngFor="let column of currentColumns">
                         <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
                         <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
                         {{column.title}}
@@ -81,7 +81,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngIf="tableItems.length == 0">
+                <tr *ngIf="tableItems.length == 0 || !currentColumns">
                     <td [attr.colspan]="columnCount">There are no rows available.</td>
                 </tr>
                 <ng-template ngFor let-tableItem [ngForOf]="tableItems" let-i="index">
@@ -102,7 +102,7 @@
                             <ng-template [ngTemplateOutlet]="rowStatusTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
                             </ng-template>
                         </td>
-                        <td *ngFor="let column of columns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
+                        <td *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
                             (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
                             <dexih-table-cell [column]="column" [row]="data[tableItem.index]"></dexih-table-cell>
                         </td>
