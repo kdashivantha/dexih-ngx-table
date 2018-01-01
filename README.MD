@@ -2,6 +2,7 @@
 
 [dex-img]: https://dataexpertsgroup.com/img/dex_web_logo.png
 [dex]: https://dataexpertsgroup.com
+[dexih-table-demo]: ./assets/dexih-table-demo-1.gif
 
 # dexih-ngx-table
 
@@ -17,6 +18,7 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 * Drag and drop row ordering.
 * Automatic save to csv file.
 
+![][dexih-table-demo]
 
 ## Installation
 
@@ -49,10 +51,16 @@ For a quick demo and sample code refer to the following [plnkr](http://plnkr.co/
 
 ## Consuming your library
 
-Once you have published your library to npm, you can import your library in any Angular application by running:
+The library can be imported into your project through npm.  
 
 ```bash
 $ npm install dexih-ngx-table
+```
+
+This library also has a depdency (for drag/drop) on the ng2-dnd library.  This can be installed thorugh npm also:
+
+```bash
+$ npm install ng2-dnd
 ```
 
 and then from your Angular `AppModule`:
