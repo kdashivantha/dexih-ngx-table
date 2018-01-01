@@ -28,6 +28,11 @@ To install this library, run:
 $ npm install dexih-ngx-table --save
 ```
 
+There is also a depdency (for drag/drop) on the ng2-dnd library.  To install this library, run:
+
+```bash
+$ npm install ng2-dnd
+```
 ## Example
 
 Create an array containing the data:
@@ -49,21 +54,9 @@ Populate this data into the table as follows:
 
 For a quick demo and sample code refer to the following [plnkr](http://plnkr.co/edit/uyPfy4930iI0E0aPv0Mi?p=preview).
 
-## Consuming your library
+## Using the Table Component
 
-The library can be imported into your project through npm.  
-
-```bash
-$ npm install dexih-ngx-table
-```
-
-This library also has a depdency (for drag/drop) on the ng2-dnd library.  This can be installed thorugh npm also:
-
-```bash
-$ npm install ng2-dnd
-```
-
-and then from your Angular `AppModule`:
+From your Angular `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -90,7 +83,7 @@ import { DexihTableModule } from 'dexih-ngx-table';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Once the library is imported, you can use it as follows:
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
