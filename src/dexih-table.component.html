@@ -2,7 +2,7 @@
     <div class="dexih-table-toolbar">
 
         <div class="row">
-            <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
+            <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
                 <div class="form-inline">
                     <a *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn-sm btn-primary" title="Save the current data to a csv file.">
                         <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;
@@ -20,7 +20,6 @@
                     <ng-template *ngIf="enableMultiSelectActions && selectedItemsCount > 0" [ngTemplateOutlet]="selectedItemsActionsTemplate"
                         [ngTemplateOutletContext]="{items: currentSelectedItems}" [ngTemplateOutletContext]="items">
                     </ng-template>
-
                 </div>
             </div>
             <hr class="row hidden-lg hidden-md" />
@@ -33,7 +32,7 @@
                         type="search" name="filterString" />
                 </div>
             </div>
-            <div *ngIf="enableSort && currentColumns" class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
+            <!-- <div *ngIf="enableSort && currentColumns" class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
                 <div dropdown class="btn-group">
                     <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
                         <i class="glyphicon glyphicon-sort"></i>
@@ -42,23 +41,13 @@
                     </button>
                     <ul *dropdownMenu class="dropdown-menu pull-right">
                         <li class="dropdown-item" ><a href="#" (click)="sortChange('', 1)">(no sort)</a></li>
-                        <li  *ngIf="enableManualSort" class="dropdown-item" ><a href="#" (click)="sortChange('manual1235135490543', 1)">Manual sort</a></li>
+                        <li  *ngIf="enableManualSort" class="dropdown-item" ><a (click)="sortChange('manual1235135490543', 1)">Manual sort</a></li>
                         <ng-template ngFor let-column [ngForOf]="currentColumns" >
-                            <li  *ngIf="column.name" class="dropdown-item" ><a href="#" (click)="sortChange(column.name, 1)">{{column.title}} (asc)</a></li>
-                            <li  *ngIf="column.name" class="dropdown-item" ><a href="#" (click)="sortChange(column.name, -1)">{{column.title}} (desc)</a></li>
+                            <li  *ngIf="column.name" class="dropdown-item" ><a (click)="sortChange(column.name, 1)">{{column.title}} (asc)</a></li>
+                            <li  *ngIf="column.name" class="dropdown-item" ><a (click)="sortChange(column.name, -1)">{{column.title}} (desc)</a></li>
                         </ng-template>
                     </ul>
-                </div>
-
-                <!-- <select (change)="sortChange($event.target.value)" [(ngModel)]="sortColumn" class="form-control">
-                                <option value="">(no sort)</option>
-                                <option *ngIf="enableManualSort" value="manual1235135490543">Manual sort</option>
-                                <ng-template ngFor let-column [ngForOf]="currentColumns" >
-                                <option *ngIf="column.name" [value]="column.name">{{column.title}}</option>
-                                </ng-template>
-                            </select> -->
-
-            </div>
+            </div> -->
         </div>
 
     </div>
@@ -70,13 +59,17 @@
                     <th *ngIf="enableMultiSelect" width="1%">
                         <input type="checkbox" [(ngModel)]="selectAllState" (ngModelChange)="selectAll()">
                     </th>
-                    <th *ngIf="manualSort" width="1%"></th>
+                    <th *ngIf="enableManualSort" width="1%">
+                        <i class="glyphicon glyphicon-sort"></i>
+                    </th>
                     <th *ngIf="enableRowActions">Action</th>
                     <th *ngIf="enableRowStatus">Status</th>
                     <th class="text-center" *ngFor="let column of currentColumns">
-                        <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
-                        <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
-                        {{column.title}}
+                        <span (click)="enableSort && sort(column.name)">
+                            <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
+                            <i *ngIf="sortColumn && sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
+                            {{column.title}}
+                        </span>
                     </th>
                 </tr>
             </thead>
@@ -89,7 +82,7 @@
                         <td *ngIf="enableMultiSelect">
                             <input type="checkbox" [(ngModel)]="tableItem.isSelected" (ngModelChange)="itemSelected(true)">
                         </td>
-                        <td *ngIf="manualSort">
+                        <td *ngIf="enableManualSort">
                             <button class="btn btn-sm btn-primary" dnd-sortable [sortableIndex]="i" (onDropSuccess)="manualSortChange()" title="Drag to move row to another position">
                                 <i class="fa fa-sort"></i>
                             </button>

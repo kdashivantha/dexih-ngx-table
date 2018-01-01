@@ -24,7 +24,6 @@
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "rxjs": "^5.1.0",
-    "ngx-bootstrap": "^2.0.0-rc.0",
     "ng2-dnd": "^4.2.0",
     "zone.js": "^0.8.4"
   }

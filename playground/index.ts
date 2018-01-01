@@ -31,12 +31,14 @@ export class AppComponent implements OnInit {
 
   columns = [
     <Column> { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
-    <Column> { name: 'intValue', title: 'Int Value', format: '' },
-    <Column> { name: 'stringValue', title: 'String Value', format: '' },
-    <Column> { name: 'dateValue', title: 'Date Value', format: 'Date' },
-    <Column> { name: 'timeValue', title: 'Time Value', format: 'Time' },
-    <Column> { name: 'boolValue', title: 'Bool Value', format: 'Boolean' },
-    <Column> { name: 'codeValue', title: 'Code Value', format: 'Code' },
+    <Column> { name: 'intValue', title: 'Int', format: '' },
+    <Column> { name: 'stringValue', title: 'String', format: '' },
+    <Column> { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
+    <Column> { name: 'dateValue', title: 'Date/Time', format: 'DateTime' },
+    <Column> { name: 'dateValue', title: 'Date', format: 'Date' },
+    <Column> { name: 'timeValue', title: 'Time', format: 'Time' },
+    <Column> { name: 'boolValue', title: 'Bool', format: 'Boolean' },
+    <Column> { name: 'codeValue', title: 'Code', format: 'Code' },
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
@@ -46,9 +48,9 @@ export class AppComponent implements OnInit {
     let date = new Date();
 
     let data = new Array<DataModel>();
-    data.push(new DataModel(1, 'row3', new Date('2001-01-01'), date, true, 'code ...', 'tip 1', 'fa fa-spin fa-cog'));
-    data.push(new DataModel(2, 'row2', new Date('2001-01-01'), date, true, 'code ...', 'tip 2', 'fa fa-spin fa-cog'));
-    data.push(new DataModel(3, 'row1', new Date('2001-01-01'), date, true, 'code ...', 'tip 3', 'fa fa-spin fa-cog'));
+    data.push(new DataModel(1, 'row3', new Date(date.getTime() + 30000), date, true, '{"name" : "Gary"}', 'tip 1', 'fa fa-spin fa-cog'));
+    data.push(new DataModel(2, 'row2', new Date(date.getTime() + 300000), date, true, '{"name" : "Gary"}', 'tip 2', 'fa fa-spin fa-cog'));
+    data.push(new DataModel(3, 'row1', new Date(date.getTime() + 3000000), date, true, '{"name" : "Gary"}.', 'tip 3', 'fa fa-spin fa-cog'));
 
     this._tableData.next(data);
   }

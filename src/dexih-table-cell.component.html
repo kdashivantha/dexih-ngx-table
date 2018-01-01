@@ -8,6 +8,8 @@
             <input *ngSwitchCase="'Boolean'" type="checkbox" disabled [ngModel]="row[column.name]" />
             <span *ngSwitchCase="'Date'">{{formattedValue}}</span>
             <span *ngSwitchCase="'Time'">{{formattedValue}}</span>
+            <span *ngSwitchCase="'DateTime'">{{formattedValue}}</span>
+            <span *ngSwitchCase="'Countdown'">{{formattedValue}}</span>
             <pre *ngSwitchCase="'Code'"><code>{{value}}</code></pre>
             <div *ngSwitchDefault [innerHTML]="value"></div>
         </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { TableItem, Column } from './dexih-table.models';
 import { isNumeric } from 'rxjs/util/isNumeric';
 import { Subscription } from 'rxjs/Subscription';
@@ -8,9 +8,11 @@ import { Subscription } from 'rxjs/Subscription';
     templateUrl: 'dexih-table-cell.component.html'
 })
 
-export class DexihTableCellComponent implements OnInit {
+export class DexihTableCellComponent implements OnInit, OnDestroy {
     @Input() column: Column;
     @Input() row: any;
+
+    private _interval;
 
     public value: any;
     public formattedValue: any;
@@ -24,16 +26,70 @@ export class DexihTableCellComponent implements OnInit {
 
             switch (this.column.format) {
                 case 'Date':
-                    this.formattedValue = (new Date(this.value).toDateString());
+                    this.formattedValue = (new Date(this.value).toLocaleDateString());
                     break;
                 case 'Time':
-                    this.formattedValue = (new Date(this.value).toTimeString());
+                    this.formattedValue = (new Date(this.value).toLocaleTimeString());
+                    break;
+                case 'DateTime':
+                    this.formattedValue = (new Date(this.value).toLocaleDateString()) + ' ' + (new Date(this.value).toLocaleTimeString());
+                    break;
+                case 'Countdown':
+                    this.formattedValue = this.countDown(new Date(this.value));
+                    this._startTimer();
                     break;
             }
         } else {
             this.value = '';
         }
     }
+
+    ngOnDestroy() {
+        if (this._interval) {
+            this._stopTimer();
+        }
+    }
+
+    private _startTimer() {
+        this._stopTimer();
+        this._interval = setInterval(() => {
+            this.formattedValue = this.countDown(new Date(this.value));
+        }, 1000);
+      }
+
+    private _stopTimer() {
+        clearInterval(this._interval);
+        this._interval = undefined;
+    }
+
+    countDown(date: Date): string {
+        let currentDate = new Date();
+
+        // seconds between the two dates
+        let delta = Math.max(0, Math.floor((date.getTime() - currentDate.getTime()) / 1000));
+        let days, hours, minutes, seconds;
+
+        let time: string;
+
+        days = Math.floor(delta / 86400);
+        delta -= days * 86400;
+        hours = Math.floor(delta  / 3600) % 24;
+        delta -= hours * 3600;
+        minutes = Math.floor(delta  / 60) % 60;
+        delta -= minutes * 60;
+        seconds = delta % 60;
+
+        time = days > 0 ? days + ' days ' : '';
+        time = time + (hours > 0 ? hours + ' hours ' : '');
+        time = time + (minutes > 0 && days === 0 ? minutes + ' minutes ' : '');
+        time = time + (seconds > 0 && days === 0 && hours === 0 ? seconds + ' seconds ' : '');
+
+        if (!time) {
+            time = 'Complete';
+        }
+
+        return time;
+      }
 
     // return the property value from any object.
     fetchFromObject(obj, prop): any {

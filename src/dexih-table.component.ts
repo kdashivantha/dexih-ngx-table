@@ -182,6 +182,24 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         }
     }
 
+    sort(sortColumn) {
+        if (this.data) {
+            this.manualSort = false;
+            if (this.sortColumn === sortColumn) {
+                if (this.sortDirection === 1) {
+                    this.sortDirection = -1;
+                } else {
+                    this.sortColumn = null;
+                    this.sortDirection = 1;
+                }
+            } else {
+                this.sortColumn = sortColumn;
+                this.sortDirection = 1;
+            }
+            this.updateFilter();
+        }
+    }
+
     manualSortChange() {
         let newData = new Array<any>();
 

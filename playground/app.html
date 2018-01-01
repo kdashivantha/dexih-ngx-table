@@ -2,26 +2,30 @@
 <p></p>
 <dexih-table 
     [enableMultiSelect]="true" 
-    [enableRowActions]="false" 
+    [enableRowActions]="true" 
     [enableRowStatus]="true" 
     [enableSingleSelectActions]="true" 
+    [enableSort]="true"
     [enableManualSort]="true"
     (rowClick)="selectedItem($event)"
 
     [enableMultiSelectActions]="true" [columns]="columns" [tableData]="tableData">
     <ng-template #selectedItemAction select="selectedItemAction" let-item="item">
-            <button class="btn btn-primary" (click)="selectedItem(item)">single item</button>
+            <button class="btn btn-primary" (click)="selectedItem(item)">Open</button>
         </ng-template>
 
     <ng-template #selectedItemsAction select="selectedItemsAction" let-items="items">
-        <button class="btn btn-primary" (click)="selectedItems(items)">seleted items</button>
+        <button class="btn btn-danger" (click)="selectedItems(items)">Delete</button>
     </ng-template>
 
     <ng-template #actions let-items="items">
-        <button class="btn btn-primary" (click)="selectedItems(items)">any items</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">New</button>
     </ng-template>
 
     <ng-template #rowStatus select="rowStatus" let-table="item">
-        row status
+        Running...
+    </ng-template>
+    <ng-template #rowAction select="rowAction" let-table="item">
+        <button class="btn btn-danger" (click)="selectedItem(item)">Cancel</button>
     </ng-template>
 </dexih-table>

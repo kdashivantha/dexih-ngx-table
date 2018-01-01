@@ -1,3 +1,8 @@
+[![][dex-img]][dex]
+
+[dex-img]: https://dataexpertsgroup.com/img/dex_web_logo.png
+[dex]: https://dataexpertsgroup.com
+
 # dexih-ngx-table
 
 dexih-ngx-table is an Angular (2+) component for building data driven tables.
@@ -9,7 +14,7 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 * Custom column formatting (such as string, numeric, date, code etc.)
 * Row single/multi selection with dynamic/hidden button selection.
 * Multiple template sections for user customization.
-* Drap and drop row ordering.
+* Drag and drop row ordering.
 * Automatic save to csv file.
 
 
@@ -162,8 +167,10 @@ Then add the columns property to the table definition:
 The following properties can be hard coded in the column settings an apply to all rows:
 - `title` - the title to place in the table header.
 - `format` - if empty no formatting is done.  Otherwise:
-  - `Date` - formats as local date/time.
+  - `Date` - formats as local date.
   - `Time` - formats as local time.
+  - `DateTime` - formats as local date & time.
+  - `Countdown` - runs a countdown timer to a future date/time.
   - `Boolean` - formats as a checkbox.
   - `Code` - formats code.
 - `width` - the width to apply to the table column (e.g. 10%, 100px).
@@ -199,7 +206,7 @@ Table styling:
 - `enableResponsive` (`true` default, `false`) - Enable bootstrap responsive table (suitable for mobile devices).
 - `tableClass` (default `table table-striped table-bordered table-hover`) - Css class to apply to the table;
 
-The following properties can be used enable `template` areas of the table which can be customized with user controls:
+The following properties can be used to enable `template` areas of the table which can be customized with user controls:
 
 - `enableActions` (`true` default) - Displays a row actions section which is the first position on the top left of the table.  This can be used for actions such as `New`.
 - `enableMultiSelectActions` (`true`, `false` default) - Displays a mutli-select section on the top left of the table, when one (or more) items are selected.  This can be used for actions allowed on multiple items such as `Delete`.
