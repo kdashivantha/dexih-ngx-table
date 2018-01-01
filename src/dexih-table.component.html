@@ -5,11 +5,11 @@
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
                 <div class="form-inline">
                     <a *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn-sm btn-primary" title="Save the current data to a csv file.">
-                        <i class="fa fa-save"></i>&nbsp;
-                        <span class="hidden-sm hidden-xs">Save</span>
+                        <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;
+                        <span class="hidden-sm hidden-xs">Save Csv</span>
                     </a>
 
-                    <ng-template *ngIf="tableItems" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
+                    <ng-template *ngIf="enableActions && tableItems" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
                         [ngTemplateOutletContext]="items">
                     </ng-template>
                     &nbsp;

@@ -11,7 +11,7 @@ export class Column {
     public name: any;
     public title: string;
     public format: string;
-    public template: string;
+    public alignment: string;
     public class: string;
     public control: string;
     public iconClass: string;

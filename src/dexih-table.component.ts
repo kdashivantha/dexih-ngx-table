@@ -14,6 +14,7 @@ import { TableItem, Column } from './dexih-table.models';
 export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, DoCheck {
     @Input() public tableData: Observable<Array<any>>;
     @Input() public data: Array<any>;
+    @Input() public enableActions = true;
     @Input() public enableMultiSelect: boolean;
     @Input() public enableRowActions: boolean;
     @Input() public enableRowStatus: boolean;

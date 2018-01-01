@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-import { DexihTableModule }  from 'dexih-ngx-table';
+import { DexihTableModule, Column }  from 'dexih-ngx-table';
 
 class DataModel {
   constructor(
@@ -30,13 +30,13 @@ export class AppComponent implements OnInit {
   title: string;
 
   columns = [
-      { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
-      { name: 'intValue', title: 'Int Value', format: '' },
-      { name: 'stringValue', title: 'String Value', format: '' },
-      { name: 'dateValue', title: 'Date Value', format: 'Date' },
-      { name: 'timeValue', title: 'Time Value', format: 'Time' },
-      { name: 'boolValue', title: 'Bool Value', format: 'Boolean' },
-      { name: 'codeValue', title: 'Code Value', format: 'Code' },
+    <Column> { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
+    <Column> { name: 'intValue', title: 'Int Value', format: '' },
+    <Column> { name: 'stringValue', title: 'String Value', format: '' },
+    <Column> { name: 'dateValue', title: 'Date Value', format: 'Date' },
+    <Column> { name: 'timeValue', title: 'Time Value', format: 'Time' },
+    <Column> { name: 'boolValue', title: 'Bool Value', format: 'Boolean' },
+    <Column> { name: 'codeValue', title: 'Code Value', format: 'Code' },
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
