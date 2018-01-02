@@ -1,12 +1,13 @@
+
+# dexih-ngx-table
+
+dexih-ngx-table is an Angular (2+) component for building data driven tables.
+
 [![][dex-img]][dex]
 
 [dex-img]: https://dataexpertsgroup.com/img/dex_web_logo.png
 [dex]: https://dataexpertsgroup.com
 [dexih-table-demo]: ./assets/dexih-table-demo-1.gif
-
-# dexih-ngx-table
-
-dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Features
 
@@ -14,9 +15,9 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 * Column sorting (ascdending/descending)
 * Custom column formatting (such as string, numeric, date, code etc.)
 * Row single/multi selection with dynamic/hidden button selection.
-* Multiple template sections for user customization.
-* Drag and drop row ordering.
-* Automatic save to csv file.
+* Multiple template sections for customization.
+* Drag and drop re-ordering.
+* Save to csv file.
 
 ![][dexih-table-demo]
 
@@ -31,11 +32,11 @@ $ npm install dexih-ngx-table --save
 There is also a depdency (for drag/drop) on the ng2-dnd library.  To install this library, run:
 
 ```bash
-$ npm install ng2-dnd
+$ npm install ng2-dnd --save
 ```
 ## Example
 
-Create an array containing the data:
+Create an array of values containing the data:
 
 ```typescript
 public sampleTable = [
@@ -61,10 +62,9 @@ From your Angular `AppModule`:
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 
-// Import your library
+// ** Import the TableModule **
 import { DexihTableModule } from 'dexih-ngx-table';
 
 @NgModule({
@@ -74,7 +74,7 @@ import { DexihTableModule } from 'dexih-ngx-table';
   imports: [
     BrowserModule,
 
-    // Import the TableModule
+    // ** Import the TableModule **
     DexihTableModule
   ],
   providers: [],
@@ -86,10 +86,7 @@ export class AppModule { }
 Once the library is imported, you can use it as follows:
 
 ```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
+<!-- Use the dexih-table selector to add the table to a template -->
 <dexih-table [data]="sampleTable">
 </dexih-table>
 ```
@@ -139,7 +136,7 @@ ngOnInit() {
 
 ## Formatting columns
 
-Columns can be formatted in the table by passing an array of type `Column` to the table component through the `columns` property.  If the `columns` property is not set the columns will be the names of each property in in the data row.
+Columns can be formatted in the table by passing an array of type `Column` to the table component through the `columns` property.  If the `columns` property is not provided the columns will be the names of each property in in the data row.
 
 The columns array can be constructed in your component as follows:
 
@@ -167,7 +164,7 @@ Then add the columns property to the table definition:
 
 The following properties can be hard coded in the column settings an apply to all rows:
 - `title` - the title to place in the table header.
-- `format` - if empty no formatting is done.  Otherwise:
+- `format` - if empty no formatting is done.  Otherwise use:
   - `Date` - formats as local date.
   - `Time` - formats as local time.
   - `DateTime` - formats as local date & time.
@@ -178,10 +175,10 @@ The following properties can be hard coded in the column settings an apply to al
 - `align` (`left`, `centre`, `right`) - the text alignment for the column.
 
 The following properties reference an property in the data row and are defined on a row by row basis:
-- `name` - value populate the cell (this can be html formatted).
-- `toolTip` - value use as a tooltip for the cell.
+- `name` - value to populate the cell (this can be html formatted).
+- `toolTip` - value to use as a tooltip for the cell.
 - `class` - value to use as a css class for the cell.
-- `iconClass` - the data property to use as a icon (note: this will be place before the `name`)
+- `iconClass` - the data property to use as a icon (note: this will be placed before the `name`)
 
 ## Formatting the Table
 

@@ -34,4 +34,6 @@ dist/*
 # Playground tmp files
 .playground
 
+docs
+
 chromeOut/*
