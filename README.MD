@@ -34,6 +34,14 @@ There is also a depdency (for drag/drop) on the ng2-dnd library.  To install thi
 ```bash
 $ npm install ng2-dnd --save
 ```
+
+You will need also need bootstrap styles included (version 3/4).  For example add this to your index.html header:
+
+```xml
+<!-- index.html -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+```
+
 ## Example
 
 Create an array of values containing the data:
