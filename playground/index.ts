@@ -48,9 +48,9 @@ export class AppComponent implements OnInit {
     let date = new Date();
 
     let data = new Array<DataModel>();
-    data.push(new DataModel(1, 'row3', new Date(date.getTime() + 30000), date, true, '{"name" : "Gary"}', 'tip 1', 'fa fa-spin fa-cog'));
-    data.push(new DataModel(2, 'row2', new Date(date.getTime() + 300000), date, true, '{"name" : "Gary"}', 'tip 2', 'fa fa-spin fa-cog'));
-    data.push(new DataModel(3, 'row1', new Date(date.getTime() + 3000000), date, true, '{"name" : "Gary"}.', 'tip 3', 'fa fa-spin fa-cog'));
+    data.push(new DataModel(1, 'row3', new Date(date.getTime() + 30000).toISOString(), date, true, '{value: 1}', 'tip 1', 'fa fa-spin fa-cog'));
+    data.push(new DataModel(2, 'row2', new Date(date.getTime() + 300000).toISOString(), date, true, '{value: 1}', 'tip 2', 'fa fa-spin fa-cog'));
+    data.push(new DataModel(3, 'row1', new Date(date.getTime() + 3000000).toISOString(), date, true, '{value: 1}', 'tip 3', 'fa fa-spin fa-cog'));
 
     this._tableData.next(data);
   }

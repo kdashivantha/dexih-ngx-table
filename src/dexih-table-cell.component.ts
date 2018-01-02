@@ -64,7 +64,6 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
 
     countDown(date: Date): string {
         let currentDate = new Date();
-
         // seconds between the two dates
         let delta = Math.max(0, Math.floor((date.getTime() - currentDate.getTime()) / 1000));
         let days, hours, minutes, seconds;
