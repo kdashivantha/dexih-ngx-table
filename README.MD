@@ -7,7 +7,7 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 [dex-img]: https://dataexpertsgroup.com/img/dex_web_logo.png
 [dex]: https://dataexpertsgroup.com
-[dexih-table-demo]: ./assets/dexih-table-demo-1.gif
+[dexih-table-demo]: https://i.imgur.com/mfJS2Ek.gifv
 
 ## Features
 
