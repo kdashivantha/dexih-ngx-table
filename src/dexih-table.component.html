@@ -80,7 +80,11 @@
                         </td>
                         <td *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
                             (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
-                            <dexih-table-cell [column]="column" [row]="data[tableItem.index]"></dexih-table-cell>
+
+                            <ng-template *ngIf="enableCellTemplate" [ngTemplateOutlet]="cellTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index], column: column, value: data[tableItem.index][column.name]}" [ngTemplateOutletContext]="item" [ngTemplateOutletContext]="column" [ngTemplateOutletContext]="value" >
+                            </ng-template>
+
+                            <dexih-table-cell *ngIf="enableCellValue" [column]="column" [row]="data[tableItem.index]"></dexih-table-cell>
                         </td>
                     </tr>
                 </ng-template>

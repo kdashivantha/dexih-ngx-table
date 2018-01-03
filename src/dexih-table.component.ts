@@ -20,6 +20,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public enableMultiSelect: boolean;
     @Input() public enableRowActions: boolean;
     @Input() public enableRowStatus: boolean;
+    @Input() public enableCellTemplate = false;
+    @Input() public enableCellValue = true;
     @Input() public enableMultiSelectActions: boolean;
     @Input() public enableSingleSelectActions = true;
     @Input() public enableManualSort = false;
@@ -47,6 +49,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @ContentChild('selectedItemsAction') selectedItemsActionsTemplate: TemplateRef<any>;
     @ContentChild('selectedItemAction') selectedItemActionsTemplate: TemplateRef<any>;
     @ContentChild('actions') actionsTemplate: TemplateRef<any>;
+    @ContentChild('cell') cellTemplate: TemplateRef<any>;
 
     filterString: string;
     filterControl = new FormControl();
@@ -71,7 +74,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     private dataDiffer;
 
-    private columnOperations = new ColumnOperations();
+    public columnOperations = new ColumnOperations();
 
     constructor(private el: ElementRef, differs: KeyValueDiffers) {
         this.dataDiffer = differs.find({}).create();

@@ -216,6 +216,10 @@ Table styling:
 - `enableResponsive` (`true` default, `false`) - Enable bootstrap responsive table (suitable for mobile devices).
 - `tableClass` (default `table table-striped table-bordered table-hover`) - Css class to apply to the table;
 
+Customizing Cells
+- `enableCellTemplate` (`true`, `false` default) - Displays the cell template, which allows custom controls to be included in each cell.
+- `enableCellValue` (`true` default, `false`) - Displays the formatted cell value in each cell.
+
 The following properties can be used to enable `template` areas of the table which can be customized with user controls:
 
 - `enableActions` (`true` default) - Displays a row actions section which is the first position on the top left of the table.  This can be used for actions such as `New`.
@@ -259,6 +263,11 @@ The templates objects can be populated using `ng-template` tags within the `dexi
     <ng-template #selectedItemsAction select="selectedItemsAction" let-items="items">
         <!-- items contains an array of the selected items -->
         <button class="btn btn-primary" (click)="selectedItems(items)">seleted items</button>
+    </ng-template>
+
+    <ng-template #cell select="cell" let-item="item" let-column="column" let-value="value">
+        <!-- items contains an array of the selected items, the column references the column & value is the formatted cell value -->
+        {{value}}
     </ng-template>
 
 </dexih-table>

@@ -6,7 +6,7 @@ Table with auto generated column names
 <dexih-table [tableData]="tableData"></dexih-table>
 <p></p>
 
-Table with auto generated column names
+Table with formatted column names
 <dexih-table [tableData]="tableData"></dexih-table>
 <p></p>
 
@@ -27,8 +27,8 @@ Table with formatted column names
 
     [enableMultiSelectActions]="true" [columns]="columns" [tableData]="tableData">
     <ng-template #selectedItemAction select="selectedItemAction" let-item="item">
-            <button class="btn btn-primary" (click)="selectedItem(item)">Open</button>
-        </ng-template>
+        <button class="btn btn-primary" (click)="selectedItem(item)">Open</button>
+    </ng-template>
 
     <ng-template #selectedItemsAction select="selectedItemsAction" let-items="items">
         <button class="btn btn-danger" (click)="selectedItems(items)">Delete</button>
@@ -41,7 +41,23 @@ Table with formatted column names
     <ng-template #rowStatus select="rowStatus" let-table="item">
         Running...
     </ng-template>
+
     <ng-template #rowAction select="rowAction" let-table="item">
         <button class="btn btn-danger" (click)="selectedItem(item)">Cancel</button>
     </ng-template>
+
+
+</dexih-table>
+
+Table with custom cells
+<dexih-table 
+    [enableCellTemplate]="true" 
+    [enableCellValue]="false" 
+    [columns]="columns" [tableData]="tableData">
+
+
+    <ng-template #cell select="cell" let-value="value">
+        <button class="btn btn-success">{{value}}</button>
+    </ng-template>
+
 </dexih-table>
