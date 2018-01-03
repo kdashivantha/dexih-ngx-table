@@ -1,9 +1,9 @@
 {
   "name": "dexih-ngx-table",
-  "version": "0.1.7-alpha",
+  "version": "0.1.8-alpha",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DataExperts/Dexih.Ngx.Table"
+    "url": "https://github.com/DataExperts/dexih-ngx-table"
   },
   "author": {
     "name": "Gary Holland",
@@ -14,7 +14,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DataExperts/Dexih.Ngx.Table/issues"
+    "url": "https://github.com/DataExperts/dexih-ngx-table/issues"
   },
   "main": "dexih-ngx-table.umd.js",
   "module": "dexih-ngx-table.js",

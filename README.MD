@@ -10,6 +10,7 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 [dexih-table-demo]: ./assets/dexih-table-demo-1.gif
 
 [![npm version](https://badge.fury.io/js/dexih-ngx-table.svg)](https://www.npmjs.com/package/dexih-ngx-table)
+[![Build Status](https://travis-ci.org/DataExperts/dexih-ngx-table.svg?branch=master)](https://travis-ci.org/DataExperts/dexih-ngx-table)
 
 ## Features
 
@@ -284,7 +285,10 @@ Events are used as follows in the `dexih-table` declaration:
 
 ## Credits
 
-Thanks to the [jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library) which was used as the baseline to package and distribute this library.
+Thanks to the following projects:
+
+* [jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library) - used as the baseline to package and distribute this library.
+* [ng2-dnd](https://github.com/akserg/ng2-dnd) - used for the drag and drop table re-order.
 
 ## License
 
