@@ -1,15 +1,17 @@
-import { Component, Input, Output, ElementRef, OnInit, AfterViewInit,
-    OnChanges, SimpleChanges, OnDestroy, ContentChild, TemplateRef, EventEmitter, DoCheck, KeyValueDiffers } from '@angular/core';
+import {
+    Component, Input, Output, ElementRef, OnInit, AfterViewInit,
+    OnChanges, SimpleChanges, OnDestroy, ContentChild, TemplateRef, EventEmitter, DoCheck, KeyValueDiffers
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { TableItem, Column } from './dexih-table.models';
+import { TableItem, Column, ColumnOperations } from './dexih-table.models';
 
 @Component({
     selector: 'dexih-table',
     templateUrl: './dexih-table.component.html',
     styleUrls: [
         'dexih-table.component.scss'
-      ]
+    ]
 })
 export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, DoCheck {
     @Input() public tableData: Observable<Array<any>>;
@@ -69,6 +71,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     private dataDiffer;
 
+    private columnOperations = new ColumnOperations();
+
     constructor(private el: ElementRef, differs: KeyValueDiffers) {
         this.dataDiffer = differs.find({}).create();
     }
@@ -102,7 +106,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 this.doLoadData(this.data);
             }
         }
-      }
+    }
 
     ngAfterViewInit() {
         this.loadCompleted = true;
@@ -122,7 +126,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     }
 
     doLoadData(data: Array<any>) {
-        if (data && data.length > 0) {
+        if (data) {
             this.data = data;
 
             // console.debug(`key length ${data[0].keys.length}`);
@@ -131,10 +135,12 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 this.currentColumns = this.columns;
             } else {
                 this.currentColumns = [];
-                let properties = Object.getOwnPropertyNames(data[0]);
-                properties.forEach(property => {
-                    this.currentColumns.push(<Column> { name: property, title: property});
-                });
+                if (data.length > 0) {
+                    let properties = Object.getOwnPropertyNames(data[0]);
+                    properties.forEach(property => {
+                        this.currentColumns.push(<Column>{ name: property, title: property });
+                    });
+                }
             }
 
             // reset the tableItems array.
@@ -142,9 +148,10 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
             this.data.forEach((item, index) => {
                 let isSelected = false;
                 if (this.keyColumn && this.selectedItems) {
-                    let keyValue = this.fetchFromObject(item, this.keyColumn);
+                    let keyValue = this.columnOperations.fetchFromObject(item, this.keyColumn);
                     let selectedKeyColumn = this.selectedKeyColumn ? this.selectedKeyColumn : this.keyColumn;
-                    let selected = this.selectedItems.findIndex( c => this.fetchFromObject(c, selectedKeyColumn) === keyValue);
+                    let selected = this.selectedItems
+                        .findIndex(c => this.columnOperations.fetchFromObject(c, selectedKeyColumn) === keyValue);
                     isSelected = selected >= 0 ? true : false;
                 }
                 this.tableItems[index] = new TableItem(index, null, isSelected, false);
@@ -222,7 +229,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 this.data.forEach((row, index) => {
                     let isMatch = false;
                     this.currentColumns.forEach(column => {
-                        if (String(this.fetchFromObject(row, column.name)).toLowerCase().includes(filter)) {
+                        if (String(this.columnOperations.fetchFromObject(row, column.name)).toLowerCase().includes(filter)) {
                             isMatch = true;
                         }
                     });
@@ -234,7 +241,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
             if (this.sortColumn) {
                 // add the sorted value to each of the table items.
-                this.tableItems.forEach(item => item.sortValue = this.fetchFromObject(this.data[item.index], this.sortColumn));
+                this.tableItems.forEach(item => item.sortValue =
+                        this.columnOperations.fetchFromObject(this.data[item.index], this.sortColumn));
             } else {
                 // if no sort colunn, sort to original order
                 this.tableItems.forEach(item => item.sortValue = item.index);
@@ -271,41 +279,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         this.itemSelected(true);
     }
 
-    // return the property value from any object.
-    fetchFromObject(obj, prop): any {
-        if (typeof obj === 'undefined' || typeof prop === 'undefined') {
-            return false;
-        }
-
-        let propType = typeof prop;
-        if (propType !== 'number') {
-            // if the proerty has a "." recurse to the next nesting.
-            let _index = prop.indexOf('.');
-            if (_index > -1) {
-                return this.fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index + 1));
-            }
-        }
-
-        let value = obj[prop];
-
-        if (!value) {
-            return '';
-        } else if (value instanceof Date) {
-            return value.toLocaleDateString() + ' ' + value.toLocaleTimeString();
-        } else if (Object.keys(value).length === 0 && value.constructor === Object) {
-            return '(null)';
-        } else {
-            return value;
-        }
-
-        // if (typeof  obj[prop] === 'object' || !obj[prop]) {
-        //     return '';
-        // } else {
-        //     return obj[prop];
-        // }
-    }
-
-    saveCsv() {
+    public saveCsv() {
         // create a header row.
         let csvContent = this.currentColumns.map(c => '"' + c.title + '"').join(',') + '\n';
 
@@ -332,23 +306,23 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     }
 
-    private processRow(row: Array<any>) {
+    private processRow(row): string {
         let finalVal = '';
-        for (let j = 0; j < row.length; j++) {
-            let innerValue = row[j] === null ? '' : row[j].toString();
-            if (row[j] instanceof Date) {
-                innerValue = row[j].toLocaleString();
-            };
-            let result = innerValue.replace(/"/g, '""');
-            if (result.search(/("|,|\n)/g) >= 0) {
-                result = '"' + result + '"';
+
+        return this.currentColumns.map(column => {
+            let value = this.columnOperations.fetchFromObject(row, column.name);
+            let formattedValue = this.columnOperations.formatValue(column, value);
+
+            if (formattedValue instanceof String) {
+                let result = formattedValue.replace(/"/g, '""');
+                if (result.search(/("|,|\n)/g) >= 0) {
+                    result = '"' + result + '"';
+                }
+                return result;
+            } else {
+                return formattedValue;
             }
-            if (j > 0) {
-                finalVal += ',';
-            }
-            finalVal += result;
-        }
-        return finalVal + '\n';
+        }).join(',') + '\n';
     };
 
 }

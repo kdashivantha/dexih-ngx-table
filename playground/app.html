@@ -1,5 +1,20 @@
+Table still loading
+<dexih-table [data]="null"></dexih-table>
+<p></p>
+
+Table with auto generated column names
 <dexih-table [tableData]="tableData"></dexih-table>
 <p></p>
+
+Table with auto generated column names
+<dexih-table [tableData]="tableData"></dexih-table>
+<p></p>
+
+Table with auto generated column names (no rows)
+<dexih-table [data]="dataEmpty"></dexih-table>
+<p></p>
+
+Table with formatted column names
 <dexih-table 
     [enableMultiSelect]="true" 
     [enableRowActions]="true" 
@@ -7,6 +22,7 @@
     [enableSingleSelectActions]="true" 
     [enableSort]="true"
     [enableManualSort]="true"
+    [enableSaveCsv]="true"
     (rowClick)="selectedItem($event)"
 
     [enableMultiSelectActions]="true" [columns]="columns" [tableData]="tableData">

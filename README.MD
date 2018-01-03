@@ -179,6 +179,7 @@ The following properties can be hard coded in the column settings an apply to al
   - `Countdown` - runs a countdown timer to a future date/time.
   - `Boolean` - formats as a checkbox.
   - `Code` - formats code.
+  - `Html` - renders a html snippet.
 - `width` - the width to apply to the table column (e.g. 10%, 100px).
 - `align` (`left`, `centre`, `right`) - the text alignment for the column.
 
