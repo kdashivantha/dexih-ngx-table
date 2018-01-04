@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
 import { DexihTableComponent } from './dexih-table.component';
 import { DexihTableCellComponent } from './dexih-table-cell.component';
+export { Column } from './dexih-table.models';
 
 @NgModule({
   imports: [
@@ -13,10 +14,10 @@ import { DexihTableCellComponent } from './dexih-table-cell.component';
   ],
   declarations: [
     DexihTableComponent,
-    DexihTableCellComponent,
+    DexihTableCellComponent
   ],
   exports: [
-    DexihTableComponent,
+    DexihTableComponent
   ]
 })
 export class DexihTableModule {

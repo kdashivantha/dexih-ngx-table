@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-import { DexihTableModule, Column }  from 'dexih-ngx-table';
+import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   title: string;
 
   columns = [
-    <Column> { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
+    { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
     <Column> { name: 'intValue', title: 'Int', format: '' },
     <Column> { name: 'stringValue', title: 'String', format: '' },
     <Column> { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
