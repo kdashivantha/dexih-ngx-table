@@ -113,6 +113,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         if (this.enableMultiSelect) { this.columnCount++; }
         if (this.enableRowActions) { this.columnCount++; }
         if (this.enableRowStatus) { this.columnCount++; }
+        if (this.enableManualSort) { this.columnCount++; }
     }
 
     ngDoCheck() {
