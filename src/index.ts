@@ -1,9 +1,11 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
-import { DexihTableComponent } from './dexih-table.component';
+
 import { DexihTableCellComponent } from './dexih-table-cell.component';
+import { DexihTableComponent } from './dexih-table.component';
+
 export { Column } from './dexih-table.models';
 
 @NgModule({

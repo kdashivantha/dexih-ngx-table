@@ -1,10 +1,23 @@
 import {
-    Component, Input, Output, ElementRef, OnInit, AfterViewInit,
-    OnChanges, SimpleChanges, OnDestroy, ContentChild, TemplateRef, EventEmitter, DoCheck, KeyValueDiffers
+    AfterViewInit,
+    Component,
+    ContentChild,
+    DoCheck,
+    ElementRef,
+    EventEmitter,
+    Input,
+    KeyValueDiffers,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+    TemplateRef,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { TableItem, Column, ColumnOperations } from './dexih-table.models';
+
+import { Column, ColumnOperations, TableItem } from './dexih-table.models';
 
 @Component({
     selector: 'dexih-table',

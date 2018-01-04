@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { TableItem, Column, ColumnOperations } from './dexih-table.models';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { isNumeric } from 'rxjs/util/isNumeric';
-import { Subscription } from 'rxjs/Subscription';
+
+import { Column, ColumnOperations } from './dexih-table.models';
 
 @Component({
     selector: 'dexih-table-cell',
