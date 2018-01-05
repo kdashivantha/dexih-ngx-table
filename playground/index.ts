@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-import { DexihTableModule,  Column  }  from '../src';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 
 class DataModel {
   constructor(
@@ -47,7 +47,15 @@ export class AppComponent implements OnInit {
 
   public dataEmpty: string[] = [];
 
+  public arrayData: string[][];
+  public arrayColumns = [
+     { name: 0, title: 'col1' },
+     <Column> { name: 1, title: 'col2' },
+     <Column> { name: 2, title: 'col3' },
+   ];
+
   ngOnInit() {
+    this.arrayData = [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']];
     let date = new Date();
 
     let data = new Array<DataModel>();

@@ -1,6 +1,6 @@
 export class TableItem {
     constructor(
-        public index,
+        public index: number,
         public sortValue: any,
         public isSelected: boolean,
         public isFiltered: boolean) {
@@ -50,7 +50,7 @@ export class ColumnOperations {
     }
 
     // return the property value from any object.
-    fetchFromObject(obj, prop): any {
+    fetchFromObject(obj: any, prop: any): any {
         if (typeof obj === 'undefined' || typeof prop === 'undefined') {
             return null;
         }
@@ -69,7 +69,7 @@ export class ColumnOperations {
         return value;
     }
 
-    formatValue(column: Column, value) {
+    formatValue(column: Column, value: any) {
         if (!value && value !== false && value !== 0) {
             return '';
         } else if (Object.keys(value).length === 0 && value.constructor === Object) {

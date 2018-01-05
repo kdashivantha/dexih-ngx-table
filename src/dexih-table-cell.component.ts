@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { isNumeric } from 'rxjs/util/isNumeric';
-
 import { Column, ColumnOperations } from './dexih-table.models';
+
 
 @Component({
     selector: 'dexih-table-cell',
@@ -12,7 +12,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     @Input() column: Column;
     @Input() row: any;
 
-    private _interval;
+    private _interval: number;
 
     public value: any;
     public formattedValue: string;
@@ -45,7 +45,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
 
     private _startTimer() {
         this._stopTimer();
-        this._interval = setInterval(() => {
+        this._interval = window.setTimeout(() => {
             if (this.value instanceof Date) {
                 this.formattedValue = this.columnOperations.countDown(this.value);
             } else {
@@ -60,7 +60,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     }
 
 
-    setAlignment(value): string {
+    setAlignment(value: any): string {
         if (this.column.format === 'Date' ||
             this.column.format === 'Time' ||
             this.column.format === 'DateTime' ||

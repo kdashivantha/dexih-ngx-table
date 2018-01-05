@@ -13,11 +13,13 @@ import {
     Output,
     SimpleChanges,
     TemplateRef,
+    KeyValueDiffer
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Column, ColumnOperations, TableItem } from './dexih-table.models';
+import { MethodCall } from '@angular/compiler';
 
 @Component({
     selector: 'dexih-table',
@@ -85,7 +87,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     private loadCompleted = false;
 
-    private dataDiffer;
+    private dataDiffer: any;
 
     public columnOperations = new ColumnOperations();
 
@@ -153,10 +155,18 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
             } else {
                 this.currentColumns = [];
                 if (data.length > 0) {
-                    let properties = Object.getOwnPropertyNames(data[0]);
-                    properties.forEach(property => {
-                        this.currentColumns.push(<Column>{ name: property, title: property });
-                    });
+                    let dataItem = data[0];
+                    if (dataItem instanceof Array) {
+                        let dataArray = <Array<any>>dataItem;
+                        for (let i = 0; i < dataArray.length; i++) {
+                            this.currentColumns.push(<Column>{ name: i, title: `[${i}]` });
+                        }
+                    } else {
+                        let properties = Object.getOwnPropertyNames(data[0]);
+                        properties.forEach(property => {
+                            this.currentColumns.push(<Column>{ name: property, title: property });
+                        });
+                    }
                 }
             }
 
@@ -192,21 +202,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         }
     }
 
-    // direction = -1 desc, 1 asc.
-    sortChange(sortColumn, direction) {
-        if (sortColumn === 'manual1235135490543') {
-            this.manualSort = true;
-            this.filterString = '';
-        } else if (this.data) {
-            this.manualSort = false;
-            this.sortColumn = sortColumn;
-            this.sortDirection = direction;
-
-            this.updateFilter();
-        }
-    }
-
-    sort(sortColumn) {
+    sort(sortColumn: string) {
         if (this.data) {
             this.manualSort = false;
             if (this.sortColumn === sortColumn) {
@@ -291,7 +287,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         }
     }
 
-    selectAll(event) {
+    selectAll(event: any) {
         this.tableItems.forEach(item => item.isSelected = this.selectAllState);
         this.itemSelected(true);
     }
@@ -323,7 +319,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     }
 
-    private processRow(row): string {
+    private processRow(row: any): string {
         let finalVal = '';
 
         return this.currentColumns.map(column => {
