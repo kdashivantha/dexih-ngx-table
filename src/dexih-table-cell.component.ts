@@ -12,7 +12,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     @Input() column: Column;
     @Input() row: any;
 
-    private _interval: number;
+    private _interval: any;
 
     public value: any;
     public formattedValue: string;
@@ -45,7 +45,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
 
     private _startTimer() {
         this._stopTimer();
-        this._interval = window.setTimeout(() => {
+        this._interval = setInterval(() => {
             if (this.value instanceof Date) {
                 this.formattedValue = this.columnOperations.countDown(this.value);
             } else {

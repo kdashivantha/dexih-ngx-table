@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   title: string;
 
   columns = [
-    { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
+    <Column> { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
     <Column> { name: 'intValue', title: 'Int', format: '' },
     <Column> { name: 'stringValue', title: 'String', format: '' },
     <Column> { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
@@ -48,14 +48,16 @@ export class AppComponent implements OnInit {
   public dataEmpty: string[] = [];
 
   public arrayData: string[][];
-  public arrayColumns = [
-     { name: 0, title: 'col1' },
-     <Column> { name: 1, title: 'col2' },
-     <Column> { name: 2, title: 'col3' },
-   ];
+  public arrayColumns: Array<Column>;
 
   ngOnInit() {
     this.arrayData = [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']];
+    this.arrayColumns = [
+      { name: 0, title: 'col1' },
+      <Column> { name: 1, title: 'col2' },
+      <Column> { name: 2, title: 'col3' },
+    ];
+    
     let date = new Date();
 
     let data = new Array<DataModel>();
