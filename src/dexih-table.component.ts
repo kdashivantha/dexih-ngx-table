@@ -32,6 +32,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public tableData: Observable<Array<any>>;
     @Input() public data: Array<any>;
     @Input() public enableActions = true;
+    @Input() public enableToolbar = true;
     @Input() public enableMultiSelect: boolean;
     @Input() public enableRowActions: boolean;
     @Input() public enableRowStatus: boolean;
@@ -42,6 +43,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public enableManualSort = false;
     @Input() public enableSort = true;
     @Input() public enableFilter = true;
+    @Input() public enableHeaderRow = true;
     @Input() public columns: Array<Column>;
     @Input() public sortColumn: string;
     @Input() public selectedItems: Array<any>;
@@ -337,7 +339,6 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
             }
         }).join(',') + '\n';
     };
-
 }
 
 

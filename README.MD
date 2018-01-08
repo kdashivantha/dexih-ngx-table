@@ -227,6 +227,7 @@ The following properties can be used to enable `template` areas of the table whi
 - `enableSingleSelectActions` (`true` default, `false`) - Displays a single-select section on the top left of the table, when one item is selected.  This can be used for actions allowed one row only such as `Open`.
 - `enableRowActions` (`true`, `false` default) - Enables a section on the first cell (or after the checkbox) of the table, which can be used for custom controls.
 - `enableRowStatus` (`true`, `false` default) - Enables a section (after the rowAction) which can be used for custom controls.
+- `enableToolbar` (`true` default, `false`) - Enables a toolbar section above the table.  Note, if this is false action buttons, and the search filter will be hidden.
 
 The templates objects can be populated using `ng-template` tags within the `dexih-table` selection, as in the following sample:
 

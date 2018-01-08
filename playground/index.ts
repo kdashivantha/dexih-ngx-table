@@ -47,17 +47,20 @@ export class AppComponent implements OnInit {
 
   public dataEmpty: string[] = [];
 
-  public arrayData: string[][];
+  private _arrayData = new BehaviorSubject<string[][]>(null);
+  arrayData: Observable<string[][]> = this._arrayData.asObservable();
   public arrayColumns: Array<Column>;
 
   ngOnInit() {
-    this.arrayData = [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']];
     this.arrayColumns = [
       { name: 0, title: 'col1' },
       <Column> { name: 1, title: 'col2' },
       <Column> { name: 2, title: 'col3' },
     ];
-    
+
+    let arrayData = [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']];
+    this._arrayData.next(arrayData);
+
     let date = new Date();
 
     let data = new Array<DataModel>();

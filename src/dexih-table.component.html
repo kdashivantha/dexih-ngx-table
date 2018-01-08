@@ -1,5 +1,5 @@
 <div class="no-padding">
-    <div class="dexih-table-toolbar">
+    <div *ngIf="enableToolbar" class="dexih-table-toolbar">
 
         <div class="row">
             <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
@@ -38,7 +38,7 @@
     <div *ngIf="tableItems" [ngClass]="{enableResponsive: table-responsive}">
         <table [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
             <thead>
-                <tr *ngIf="currentColumns">
+                <tr *ngIf="currentColumns && enableHeaderRow">
                     <th *ngIf="enableMultiSelect" width="1%">
                         <input type="checkbox" [(ngModel)]="selectAllState" (ngModelChange)="selectAll()">
                     </th>
