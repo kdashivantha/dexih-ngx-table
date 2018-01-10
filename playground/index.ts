@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -30,16 +30,16 @@ export class AppComponent implements OnInit {
   title: string;
 
   columns = [
-    <Column> { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
-    <Column> { name: 'intValue', title: 'Int', format: '' },
-    <Column> { name: 'stringValue', title: 'String', format: '' },
-    <Column> { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
-    <Column> { name: 'dateValue', title: 'Date/Time', format: 'DateTime' },
-    <Column> { name: 'dateValue', title: 'Date', format: 'Date' },
-    <Column> { name: 'timeValue', title: 'Time', format: 'Time' },
-    <Column> { name: 'boolValue', title: 'Bool', format: 'Boolean' },
-    <Column> { name: 'codeValue', title: 'Code', format: 'Code' },
-    <Column> { name: 'codeValue', title: 'Html', format: 'Html' },
+    { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
+    { name: 'intValue', title: 'Int', format: '' },
+    { name: 'stringValue', title: 'String', format: '' },
+    { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
+    { name: 'dateValue', title: 'Date/Time', format: 'DateTime' },
+    { name: 'dateValue', title: 'Date', format: 'Date' },
+    { name: 'timeValue', title: 'Time', format: 'Time' },
+    { name: 'boolValue', title: 'Bool', format: 'Boolean' },
+    { name: 'codeValue', title: 'Code', format: 'Code' },
+    { name: 'codeValue', title: 'Html', format: 'Html' },
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
@@ -49,13 +49,13 @@ export class AppComponent implements OnInit {
 
   private _arrayData = new BehaviorSubject<string[][]>(null);
   arrayData: Observable<string[][]> = this._arrayData.asObservable();
-  public arrayColumns: Array<Column>;
+  public arrayColumns: Array<any>;
 
   ngOnInit() {
     this.arrayColumns = [
       { name: 0, title: 'col1' },
-      <Column> { name: 1, title: 'col2' },
-      <Column> { name: 2, title: 'col3' },
+      { name: 1, title: 'col2' },
+      { name: 2, title: 'col3' },
     ];
 
     let arrayData = [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']];

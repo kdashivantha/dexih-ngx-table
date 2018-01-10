@@ -24,9 +24,7 @@ import { MethodCall } from '@angular/compiler';
 @Component({
     selector: 'dexih-table',
     templateUrl: './dexih-table.component.html',
-    styleUrls: [
-        'dexih-table.component.scss'
-    ]
+    styleUrls: [ './dexih-table.component.scss' ]
 })
 export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, DoCheck {
     @Input() public tableData: Observable<Array<any>>;
