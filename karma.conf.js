@@ -2,7 +2,7 @@
 // Generated on Wed Jan 10 2018 11:41:17 GMT+1100 (AEDT)
 
 module.exports = function(config) {
-  config.set({
+  var cfg = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -43,12 +43,11 @@ module.exports = function(config) {
         lib: ['ES2015', 'DOM']
       }
     },
-    customLaunchers: {
-      Chrome_with_debugging: {
-        base: 'Chrome',
-        flags: ['--remote-debugging-port=9222'],
-        debug: true
-      }
+      customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
     },
     browserNoActivityTimeout: 100000,
     
@@ -96,5 +95,11 @@ module.exports = function(config) {
     concurrency: Infinity,
 
 
-  })
+  };
+
+  if (process.env.TRAVIS) {
+    cfg.browsers = ['Chrome_travis_ci'];
+}
+
+config.set(cfg);
 }

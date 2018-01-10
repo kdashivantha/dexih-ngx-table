@@ -55,6 +55,5 @@ describe('DexihTableComponentTest', () => {
       const content = el.textContent;
       expect(el).toBeDefined();
     });
-
 });
 
