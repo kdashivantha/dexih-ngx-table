@@ -43,20 +43,20 @@ module.exports = function(config) {
         lib: ['ES2015', 'DOM']
       }
     },
-      customLaunchers: {
-        Chrome_travis_ci: {
-            base: 'Chrome',
-            flags: ['--no-sandbox']
-        }
-    },
+      // customLaunchers: {
+      //   Chrome_travis_ci: {
+      //       base: 'Chrome',
+      //       flags: ['--no-sandbox']
+      //   }
+    // },
     browserNoActivityTimeout: 100000,
     
-    scssPreprocessor: {
-      options: {
-        sourceMap: true,
-        includePaths: []
-      }
-    },
+    // scssPreprocessor: {
+    //   options: {
+    //     sourceMap: true,
+    //     includePaths: []
+    //   }
+    // },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
