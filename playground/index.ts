@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-import { DexihTableModule,  Column  }  from '../src';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 
 class DataModel {
   constructor(
