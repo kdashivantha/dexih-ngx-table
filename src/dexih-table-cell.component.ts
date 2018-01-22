@@ -4,13 +4,14 @@ import { Column, ColumnOperations } from './dexih-table.models';
 
 
 @Component({
+    moduleId: module.id,
     selector: 'dexih-table-cell',
     templateUrl: 'dexih-table-cell.component.html'
 })
 
 export class DexihTableCellComponent implements OnInit, OnDestroy {
-    @Input() column: Column;
-    @Input() row: any;
+    @Input() public column: Column;
+    @Input() public row: any;
 
     private _interval: any;
 

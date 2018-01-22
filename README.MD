@@ -22,6 +22,12 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 * Drag and drop re-ordering.
 * Save to csv file.
 
+## Releases Summary
+
+Latest stable release 0.1.22-beta.
+
+This is the first `beta` tag and the library is not AOT compatible.  We will be staying with the `beta` tag until test coverage is completed over the next few months.
+
 ![][dexih-table-demo]
 
 ## Installation

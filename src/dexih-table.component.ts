@@ -22,6 +22,7 @@ import { Column, ColumnOperations, TableItem } from './dexih-table.models';
 import { MethodCall } from '@angular/compiler';
 
 @Component({
+    moduleId: module.id,
     selector: 'dexih-table',
     templateUrl: './dexih-table.component.html',
     styleUrls: [ './dexih-table.component.scss' ]
@@ -59,39 +60,35 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Output() public onSortChanged: EventEmitter<Array<any>>
         = new EventEmitter<Array<any>>();
 
-    @ContentChild('rowAction') rowActionTemplate: TemplateRef<any>;
-    @ContentChild('rowStatus') rowStatusTemplate: TemplateRef<any>;
-    @ContentChild('selectedItemsAction') selectedItemsActionsTemplate: TemplateRef<any>;
-    @ContentChild('selectedItemAction') selectedItemActionsTemplate: TemplateRef<any>;
-    @ContentChild('actions') actionsTemplate: TemplateRef<any>;
-    @ContentChild('cell') cellTemplate: TemplateRef<any>;
+    @ContentChild('rowAction') public rowActionTemplate: TemplateRef<any>;
+    @ContentChild('rowStatus') public rowStatusTemplate: TemplateRef<any>;
+    @ContentChild('selectedItemsAction') public selectedItemsActionsTemplate: TemplateRef<any>;
+    @ContentChild('selectedItemAction') public selectedItemActionsTemplate: TemplateRef<any>;
+    @ContentChild('actions') public actionsTemplate: TemplateRef<any>;
+    @ContentChild('cell') public cellTemplate: TemplateRef<any>;
 
-    filterString: string;
-    filterControl = new FormControl();
-    sortDirection = 1;
+    public filterString: string;
+    public filterControl = new FormControl();
+    public sortDirection = 1;
+    public manualSort = false;
 
-    manualSort = false;
+    public currentSelectedItems: Array<any>;
 
-    currentSelectedItems: Array<any>;
-
-    tableItems: Array<TableItem>;
+    public tableItems: Array<TableItem>;
     public currentColumns: Column[];
 
-    selectedItemsCount: number;
+    public selectedItemsCount: number;
     private selectAllState: boolean;
 
-    columnCount = 1;
+    public columnCount = 1;
 
     private tableDataSubscription: Subscription;
     private filterSubscription: Subscription;
-
     private loadCompleted = false;
-
     private dataDiffer: any;
+    private columnOperations = new ColumnOperations();
 
-    public columnOperations = new ColumnOperations();
-
-    constructor(private el: ElementRef, differs: KeyValueDiffers) {
+    constructor(public el: ElementRef, public differs: KeyValueDiffers) {
         this.dataDiffer = differs.find({}).create();
     }
 

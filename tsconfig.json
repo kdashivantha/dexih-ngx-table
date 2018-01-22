@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "module": "commonjs",
     "rootDir": "./src",
     "target": "es5",
     "typeRoots": [
