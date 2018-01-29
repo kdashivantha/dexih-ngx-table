@@ -1,38 +1,44 @@
-Table still loading
-<dexih-table [data]="null"></dexih-table>
-<p></p>
+<dexih-table [data]="null" [enableRowActions]="true" heading="Table still loading">
+    <ng-template #actions let-items="items">
+        <button class="btn btn-danger">Cancel</button>
+    </ng-template>
+</dexih-table>
+<hr/>
 
-Table with auto generated column names
-<dexih-table [tableData]="tableData"></dexih-table>
-<p></p>
+<dexih-table [tableData]="arrayData" [columns]="arrayColumns" error="I messed up...." heading="Table with error">
+</dexih-table>
+<hr/>
 
-Table with formatted column names
-<dexih-table [tableData]="tableData"></dexih-table>
-<p></p>
+<dexih-table [data]="[]" [columns]="arrayColumns" [enableRowActions]="true" heading="Table no data">
+    <ng-template #actions let-items="items">
+        <button class="btn btn-danger">Cancel</button>
+    </ng-template>
+</dexih-table>
+<hr/>
 
-Table with populated from array
-<dexih-table [tableData]="arrayData"></dexih-table>
-<p></p>
 
-Table with populated from array with column formatting
-<dexih-table [tableData]="arrayData" [columns]="arrayColumns"></dexih-table>
-<p></p>
+<dexih-table [tableData]="tableData" heading="Table with auto generated column names"></dexih-table>
+<hr/>
 
-Table with auto generated column names (no rows)
-<dexih-table [data]="dataEmpty"></dexih-table>
-<p></p>
 
-Table with formatted column names
-<dexih-table 
-    [enableMultiSelect]="true" 
-    [enableRowActions]="true" 
-    [enableRowStatus]="true" 
-    [enableSingleSelectActions]="true" 
-    [enableSort]="true"
-    [enableManualSort]="true"
-    [enableSaveCsv]="true"
-    (rowClick)="selectedItem($event)"
+<dexih-table [tableData]="tableData" [columns]="columns" heading="Table with formatted column names"></dexih-table>
+<hr/>
 
+
+<dexih-table [tableData]="arrayData" heading="Table with populated from array"></dexih-table>
+<hr/>
+
+
+<dexih-table [tableData]="arrayData" [columns]="arrayColumns" heading="Table with populated from array with column formatting"></dexih-table>
+<hr/>
+
+
+<dexih-table [data]="dataEmpty" heading="Table with auto generated column names (no rows)"></dexih-table>
+<hr/>
+
+
+<dexih-table [enableMultiSelect]="true" [enableRowActions]="true" [enableRowStatus]="true" [enableSingleSelectActions]="true"
+    [enableSort]="true" [enableManualSort]="true" [enableSaveCsv]="true" (rowClick)="selectedItem($event)" heading="Table with export, sort, row action enabled."
     [enableMultiSelectActions]="true" [columns]="columns" [tableData]="tableData">
     <ng-template #selectedItemAction select="selectedItemAction" let-item="item">
         <button class="btn btn-primary" (click)="selectedItem(item)">Open</button>
@@ -56,12 +62,10 @@ Table with formatted column names
 
 
 </dexih-table>
+<hr/>
 
-Table with custom cells
-<dexih-table 
-    [enableCellTemplate]="true" 
-    [enableCellValue]="false" 
-    [columns]="columns" [tableData]="tableData">
+
+<dexih-table [enableCellTemplate]="true" [enableCellValue]="false" [columns]="columns" [tableData]="tableData" heading="Table with custom cells">
 
 
     <ng-template #cell select="cell" let-value="value">
@@ -69,3 +73,5 @@ Table with custom cells
     </ng-template>
 
 </dexih-table>
+
+<hr/>

@@ -7,6 +7,20 @@
   background: #fafafa;
 }
 
+.dexih-table-heading {
+//  display:block;
+  padding:1px 10px;
+  border-bottom:1px solid #ccc;
+	color: white;
+  background: #9b9b9b;
+}
+
+.dexih-table-error {
+		display:block;
+		padding:8px 10px;
+		border-bottom:1px solid #ccc;
+	}
+
 .glyphicon-refresh-animate {
   -animation: spin 2s infinite linear;
   -ms-animation: spin 2s infinite linear;

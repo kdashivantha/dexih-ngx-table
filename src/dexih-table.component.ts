@@ -52,6 +52,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public csvFileName = 'data.csv';
     @Input() public enableResponsive = true;
     @Input() public tableClass = 'table table-striped table-bordered table-hover';
+    @Input() public error: string;
+    @Input() public heading: string;
 
     @Output() rowClick: EventEmitter<any>
         = new EventEmitter<any>();

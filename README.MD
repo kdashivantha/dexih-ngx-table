@@ -15,7 +15,7 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 ## Features
 
 * Global Search/Filtering.
-* Column sorting (ascdending/descending)
+* Column sorting (ascending/descending)
 * Custom column formatting (such as string, numeric, date, code etc.)
 * Row single/multi selection with dynamic/hidden button selection.
 * Multiple template sections for customization.
@@ -24,7 +24,12 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
-Latest stable release 0.1.22-beta.
+### Release 0.1.23-beta.
+
+* Library is now AOT compatible.  Projects can now build with `ng build --prod` or `ng build --aot`.
+* Added error and heading properties. 
+
+### Release 0.1.22-beta.
 
 This is the first `beta` tag and the library is not AOT compatible.  We will be staying with the `beta` tag until test coverage is completed over the next few months.
 
@@ -38,7 +43,7 @@ To install this library, run:
 $ npm install dexih-ngx-table --save
 ```
 
-There is also a depdency (for drag/drop) on the ng2-dnd library.  To install this library, run:
+There is also a dependency (for drag/drop) on the ng2-dnd library.  To install this library, run:
 
 ```bash
 $ npm install ng2-dnd --save
@@ -234,6 +239,8 @@ The following properties can be used to enable `template` areas of the table whi
 - `enableRowActions` (`true`, `false` default) - Enables a section on the first cell (or after the checkbox) of the table, which can be used for custom controls.
 - `enableRowStatus` (`true`, `false` default) - Enables a section (after the rowAction) which can be used for custom controls.
 - `enableToolbar` (`true` default, `false`) - Enables a toolbar section above the table.  Note, if this is false action buttons, and the search filter will be hidden.
+- `error` (null default) - If set, displays the specified error message at the top of the table.
+- `heading` (null default) - If set, displays the specified heading message at the top of the table.
 
 The templates objects can be populated using `ng-template` tags within the `dexih-table` selection, as in the following sample:
 
@@ -254,7 +261,7 @@ The templates objects can be populated using `ng-template` tags within the `dexi
 
     <ng-template #rowAction select="rowAction" let-item="item">
         <!-- item contains the current row -->
-        <button class="btn btn-primary" (click)="selectedItems(items)">seleted items</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">selected items</button>
     </ng-template>
 
     <ng-template #rowStatus select="rowStatus" let-item="item">
@@ -269,7 +276,7 @@ The templates objects can be populated using `ng-template` tags within the `dexi
 
     <ng-template #selectedItemsAction select="selectedItemsAction" let-items="items">
         <!-- items contains an array of the selected items -->
-        <button class="btn btn-primary" (click)="selectedItems(items)">seleted items</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">selected items</button>
     </ng-template>
 
     <ng-template #cell select="cell" let-item="item" let-column="column" let-value="value">

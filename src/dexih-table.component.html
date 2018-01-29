@@ -1,4 +1,14 @@
 <div class="no-padding">
+    <div *ngIf="heading" class="dexih-table-heading">
+        <h3>{{heading}}</h3>
+    </div>
+
+    <div class="dexih-table-error" *ngIf="error">
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    </div>
+
     <div *ngIf="enableToolbar" class="dexih-table-toolbar">
         <div class="row">
             <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
@@ -8,7 +18,7 @@
                         <span class="hidden-sm hidden-xs">Export</span>
                     </button>
 
-                    <ng-template *ngIf="enableActions && tableItems" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
+                    <ng-template *ngIf="enableActions" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
                         [ngTemplateOutletContext]="items">
                     </ng-template>
                     &nbsp;
@@ -22,13 +32,13 @@
                 </div>
             </div>
             <hr class="row hidden-lg hidden-md" />
-            <div *ngIf="enableFilter" class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <div *ngIf="enableFilter && tableItems?.length > 0" class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
                 <div [ngClass]="{disabled : manualSort}" class="input-group">
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-search"></i>
                     </span>
-                    <input [ngModel]="filterString" [formControl]="filterControl" class="form-control input-md" placeholder="Search..."
-                        type="search" name="filterString" />
+                    <input [ngModel]="filterString" [formControl]="filterControl" class="form-control input-md" placeholder="Search..." type="search"
+                        name="filterString" />
                 </div>
             </div>
         </div>
@@ -80,7 +90,8 @@
                         <td *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
                             (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
 
-                            <ng-template *ngIf="enableCellTemplate" [ngTemplateOutlet]="cellTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index], column: column, value: data[tableItem.index][column.name]}" [ngTemplateOutletContext]="item" [ngTemplateOutletContext]="column" [ngTemplateOutletContext]="value" >
+                            <ng-template *ngIf="enableCellTemplate" [ngTemplateOutlet]="cellTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index], column: column, value: data[tableItem.index][column.name]}"
+                                [ngTemplateOutletContext]="item" [ngTemplateOutletContext]="column" [ngTemplateOutletContext]="value">
                             </ng-template>
 
                             <dexih-table-cell *ngIf="enableCellValue" [column]="column" [row]="data[tableItem.index]"></dexih-table-cell>
@@ -91,11 +102,13 @@
         </table>
     </div>
 
-    <div *ngIf="!tableItems">
+    <div *ngIf="!tableItems && !error">
         <div class="row">
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
                 <h3 class="ajax-loading-animation">&nbsp;&nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span><span name="loading">Data is loading...</span></h3>
+                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                    <span name="loading">Data is loading...</span>
+                </h3>
             </div>
         </div>
     </div>
