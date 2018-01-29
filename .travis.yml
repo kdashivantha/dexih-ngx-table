@@ -5,7 +5,7 @@ node_js:
 
 before_install:
   - export CHROME_BIN=chromium-browser
-  - npm i -g yarn
+#  - npm i -g yarn
 
 before_script:
   - npm prune
