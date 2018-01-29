@@ -41,6 +41,7 @@ chromeOut/*
 # Karma transform
 init-test-bed.spec.js
 src/**/*.js
+playground/index.js
 
 # coverage
 coverage
