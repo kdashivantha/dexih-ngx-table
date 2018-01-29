@@ -5,7 +5,7 @@
 </dexih-table>
 <hr/>
 
-<dexih-table [tableData]="arrayData" [columns]="arrayColumns" error="I messed up...." heading="Table with error">
+<dexih-table [dataObservable]="arrayData" [columns]="arrayColumns" error="I messed up...." heading="Table with error">
 </dexih-table>
 <hr/>
 
@@ -17,19 +17,24 @@
 <hr/>
 
 
-<dexih-table [tableData]="tableData" heading="Table with auto generated column names"></dexih-table>
+<dexih-table [dataObservable]="tableData" heading="Table with auto generated column names"></dexih-table>
 <hr/>
 
 
-<dexih-table [tableData]="tableData" [columns]="columns" heading="Table with formatted column names"></dexih-table>
+<dexih-table [dataObservable]="tableData" [columns]="columns" heading="Table with formatted column names"></dexih-table>
 <hr/>
 
+<dexih-table [dataObservable]="arrayData" heading="Table with populated from array"></dexih-table>
 
-<dexih-table [tableData]="arrayData" heading="Table with populated from array"></dexih-table>
+<div style="width: 320px">
+    <dexih-table [dataObservable]="arrayData" [columns]="columns"  heading="Responsive table (horizontal scross bar)"></dexih-table>
+</div>
+
 <hr/>
+    
+    
 
-
-<dexih-table [tableData]="arrayData" [columns]="arrayColumns" heading="Table with populated from array with column formatting"></dexih-table>
+<dexih-table [dataObservable]="arrayData" [columns]="arrayColumns" heading="Table with populated from array with column formatting"></dexih-table>
 <hr/>
 
 
@@ -39,7 +44,7 @@
 
 <dexih-table [enableMultiSelect]="true" [enableRowActions]="true" [enableRowStatus]="true" [enableSingleSelectActions]="true"
     [enableSort]="true" [enableManualSort]="true" [enableSaveCsv]="true" (rowClick)="selectedItem($event)" heading="Table with export, sort, row action enabled."
-    [enableMultiSelectActions]="true" [columns]="columns" [tableData]="tableData">
+    [enableMultiSelectActions]="true" [columns]="columns" [dataObservable]="tableData">
     <ng-template #selectedItemAction select="selectedItemAction" let-item="item">
         <button class="btn btn-primary" (click)="selectedItem(item)">Open</button>
     </ng-template>
@@ -65,7 +70,7 @@
 <hr/>
 
 
-<dexih-table [enableCellTemplate]="true" [enableCellValue]="false" [columns]="columns" [tableData]="tableData" heading="Table with custom cells">
+<dexih-table [enableCellTemplate]="true" [enableCellValue]="false" [columns]="columns" [dataObservable]="tableData" heading="Table with custom cells">
 
 
     <ng-template #cell select="cell" let-value="value">

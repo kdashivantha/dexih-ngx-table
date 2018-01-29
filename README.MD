@@ -24,6 +24,12 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.24-beta.
+
+* Breaking property change - [tableData] is now [dataObservable]
+* Table now responsive (set enableResponsive = false for non-responsive table).
+
+
 ### Release 0.1.23-beta.
 
 * Library is now AOT compatible.  Projects can now build with `ng build --prod` or `ng build --aot`.

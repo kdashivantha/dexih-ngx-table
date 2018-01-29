@@ -28,7 +28,7 @@ import { MethodCall } from '@angular/compiler';
     styleUrls: [ './dexih-table.component.scss' ]
 })
 export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, DoCheck {
-    @Input() public tableData: Observable<Array<any>>;
+    @Input() public dataObservable: Observable<Array<any>>;
     @Input() public data: Array<any>;
     @Input() public enableActions = true;
     @Input() public enableToolbar = true;
@@ -118,7 +118,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     }
 
     ngDoCheck() {
-        if (!this.tableData && this.data) {
+        if (!this.dataObservable && this.data) {
             let changes = this.dataDiffer.diff(this.data); // check for changes
             if (changes) {
                 this.doLoadData(this.data);
@@ -132,9 +132,9 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
 
     loadTableData() {
         // use the observable for loading the table as first preference.
-        if (this.tableData) {
+        if (this.dataObservable) {
             if (this.tableDataSubscription) { this.tableDataSubscription.unsubscribe(); }
-            this.tableDataSubscription = this.tableData.subscribe(data => {
+            this.tableDataSubscription = this.dataObservable.subscribe(data => {
                 this.doLoadData(data);
             });
         } else {
