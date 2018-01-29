@@ -42,6 +42,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public enableManualSort = false;
     @Input() public enableSort = true;
     @Input() public enableFilter = true;
+    @Input() public filterString: string;
     @Input() public enableHeaderRow = true;
     @Input() public columns: Array<Column>;
     @Input() public sortColumn: string;
@@ -69,7 +70,6 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @ContentChild('actions') public actionsTemplate: TemplateRef<any>;
     @ContentChild('cell') public cellTemplate: TemplateRef<any>;
 
-    public filterString: string;
     public filterControl = new FormControl();
     public sortDirection = 1;
     public manualSort = false;

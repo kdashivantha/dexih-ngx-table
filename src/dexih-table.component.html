@@ -45,7 +45,7 @@
     </div>
 
     <div *ngIf="tableItems" [ngClass]="{'table-responsive': enableResponsive}">
-        <table [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
+        <table name="dexih-table" [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
             <thead>
                 <tr *ngIf="currentColumns && enableHeaderRow">
                     <th *ngIf="enableMultiSelect" width="1%">
@@ -57,7 +57,7 @@
                     <th *ngIf="enableRowActions">Action</th>
                     <th *ngIf="enableRowStatus">Status</th>
                     <th class="text-center" *ngFor="let column of currentColumns">
-                        <span (click)="enableSort && ( column.name || column.name == 0 ) && sort(column.name)">
+                        <span name="dexih-column-heading" (click)="enableSort && ( column.name || column.name == 0 ) && sort(column.name)">
                             <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==1" class="glyphicon glyphicon-sort-by-alphabet pull-right"></i>
                             <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==-1" class="glyphicon glyphicon-sort-by-alphabet-alt pull-right"></i>
                             {{column.title}}
@@ -70,7 +70,7 @@
                     <td [attr.colspan]="columnCount">There are no rows available.</td>
                 </tr>
                 <ng-template ngFor let-tableItem [ngForOf]="tableItems" let-i="index">
-                    <tr *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected">
+                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected">
                         <td *ngIf="enableMultiSelect">
                             <input type="checkbox" [(ngModel)]="tableItem.isSelected" (ngModelChange)="itemSelected(true)">
                         </td>
@@ -87,7 +87,7 @@
                             <ng-template [ngTemplateOutlet]="rowStatusTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
                             </ng-template>
                         </td>
-                        <td *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
+                        <td name="dexih-table-cell" *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
                             (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
 
                             <ng-template *ngIf="enableCellTemplate" [ngTemplateOutlet]="cellTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index], column: column, value: data[tableItem.index][column.name]}"
@@ -107,7 +107,7 @@
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
                 <h3 class="ajax-loading-animation">&nbsp;&nbsp;&nbsp;
                     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-                    <span name="loading">Data is loading...</span>
+                    <span name="dexih-data-loading">Data is loading...</span>
                 </h3>
             </div>
         </div>
