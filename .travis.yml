@@ -11,7 +11,7 @@ before_script:
   - npm prune
 
 install:
-  - yarn
+#  - yarn
 
 before_script:
   - export DISPLAY=:99.0
