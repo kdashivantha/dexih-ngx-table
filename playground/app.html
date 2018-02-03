@@ -5,6 +5,10 @@
 </dexih-table>
 <hr/>
 
+<dexih-table [data]="delayedData" heading="Table loading, then empty in 5 seconds, then populated in another 5 seconds.">
+</dexih-table>
+<hr/>
+
 <dexih-table [dataObservable]="arrayData" [columns]="arrayColumns" error="I messed up...." heading="Table with error">
 </dexih-table>
 <hr/>

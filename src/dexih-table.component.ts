@@ -120,7 +120,9 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     ngDoCheck() {
         if (!this.dataObservable && this.data) {
             let changes = this.dataDiffer.diff(this.data); // check for changes
-            if (changes) {
+
+            // the data.length === 0 is checked also as dataDiffer doesn't detect from null to empty
+            if (changes || (this.data && this.data.length === 0)) {
                 this.doLoadData(this.data);
             }
         }

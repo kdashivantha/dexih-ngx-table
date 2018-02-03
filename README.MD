@@ -24,6 +24,10 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.25-beta.
+
+* Fix issue where "Loading" animation remained when loading to a zero row table.
+
 ### Release 0.1.24-beta.
 
 * Breaking property change - [tableData] is now [dataObservable]

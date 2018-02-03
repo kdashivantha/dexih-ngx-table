@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
-import { DexihTableModule,  Column  }  from '../src';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+// import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
   tableData: Observable<Array<DataModel>> = this._tableData.asObservable();
 
   public dataEmpty: string[] = [];
+  public delayedData: any[] = null;
 
   private _arrayData = new BehaviorSubject<string[][]>(null);
   arrayData: Observable<string[][]> = this._arrayData.asObservable();
@@ -72,6 +74,14 @@ export class AppComponent implements OnInit {
       true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog'));
 
     this._tableData.next(data);
+
+    setTimeout(() => {
+        this.delayedData = [];
+
+        setTimeout(() => {
+          this.delayedData = data;
+        }, 5000);
+    }, 5000);
   }
 
   public selectedItems(items: Array<DataModel>) {
