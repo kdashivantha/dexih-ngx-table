@@ -24,6 +24,11 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.26-beta.
+
+* Breaking: changed event name selectedItemsChange -> onSelectedChange
+* Added drop functionality to table.
+
 ### Release 0.1.25-beta.
 
 * Fix issue where "Loading" animation remained when loading to a zero row table.
@@ -251,6 +256,7 @@ The following properties can be used to enable `template` areas of the table whi
 - `enableToolbar` (`true` default, `false`) - Enables a toolbar section above the table.  Note, if this is false action buttons, and the search filter will be hidden.
 - `error` (null default) - If set, displays the specified error message at the top of the table.
 - `heading` (null default) - If set, displays the specified heading message at the top of the table.
+- `dropZones` (empty array default) - Array of dropZones which will trigger the `onDrop` event.  See [ng2-dnd](https://github.com/akserg/ng2-dnd) for documentation on drag/drop.
 
 The templates objects can be populated using `ng-template` tags within the `dexih-table` selection, as in the following sample:
 
@@ -302,15 +308,17 @@ The templates objects can be populated using `ng-template` tags within the `dexi
 The following events can be used to response to table actions:
 
 - `rowClick` (item containing row) - called when a row is clicked (excluding: checkbox, rowAction, rowStatus) column
-- `selectedItemsChange` (item containing selected items) - called when a row selection changes.
+- `onSelectedChange` (item containing selected items) - called when a row selection changes.
 - `onSortChanged` (array of sorted items) - called when a manual drag/drop sort is completed.
+- `onSortChanged` (array of sorted items) - called when a manual drag/drop sort is completed.
+- `onDrop` (drop data) - called when data is dropped on the table.  Use the `dropZones` attribute to configure items that will trigger the event.
 
 Events are used as follows in the `dexih-table` declaration:
 
 ```xml
 <dexih-table 
     (rowClick)="selectedItem($event)"
-    (selectedItemsChange)="selectedItem($event)"
+    (onSelectedChange)="selectedItem($event)"
     (onSortChanged)="selectedItem($event)"
     >
 </dexih-table>
@@ -321,7 +329,7 @@ Events are used as follows in the `dexih-table` declaration:
 Thanks to the following projects:
 
 * [jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library) - used as the baseline to package and distribute this library.
-* [ng2-dnd](https://github.com/akserg/ng2-dnd) - used for the drag and drop table re-order.
+* [ng2-dnd](https://github.com/akserg/ng2-dnd) - used for the drag and drop and table re-order capabilities.
 
 ## License
 

@@ -66,11 +66,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngIf="tableItems.length == 0 || !currentColumns">
+                <tr *ngIf="tableItems.length == 0 || !currentColumns" dnd-droppable [dropZones]="dropZones" (onDropSuccess)="onDropSuccess($event)">
                     <td [attr.colspan]="columnCount">There are no rows available.</td>
                 </tr>
                 <ng-template ngFor let-tableItem [ngForOf]="tableItems" let-i="index">
-                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected">
+                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected" dnd-droppable [dropZones]="dropZones" (onDropSuccess)="onDropSuccess($event)">
                         <td *ngIf="enableMultiSelect">
                             <input type="checkbox" [(ngModel)]="tableItem.isSelected" (ngModelChange)="itemSelected(true)">
                         </td>

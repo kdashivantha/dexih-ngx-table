@@ -55,13 +55,16 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public tableClass = 'table table-striped table-bordered table-hover';
     @Input() public error: string;
     @Input() public heading: string;
+    @Input() public dropZones: string[] = [];
 
     @Output() rowClick: EventEmitter<any>
         = new EventEmitter<any>();
-    @Output() selectedItemsChange: EventEmitter<Array<any>>
+    @Output() onSelectedChange: EventEmitter<Array<any>>
         = new EventEmitter<Array<any>>();
     @Output() public onSortChanged: EventEmitter<Array<any>>
         = new EventEmitter<Array<any>>();
+
+    @Output() public onDrop: EventEmitter<any> = new EventEmitter<any>();
 
     @ContentChild('rowAction') public rowActionTemplate: TemplateRef<any>;
     @ContentChild('rowStatus') public rowStatusTemplate: TemplateRef<any>;
@@ -284,7 +287,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         }
 
         if (this.loadCompleted && raiseEvent) {
-            this.selectedItemsChange.emit(this.currentSelectedItems);
+            this.onSelectedChange.emit(this.currentSelectedItems);
         }
     }
 
@@ -338,6 +341,12 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
             }
         }).join(',') + '\n';
     };
+
+    public onDropSuccess($event: any) {
+        console.debug('drop triggered');
+        this.onDrop.emit($event);
+    }
+
 }
 
 

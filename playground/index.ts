@@ -2,12 +2,15 @@
  * This is only for local test
  */
 import { BrowserModule } from '@angular/platform-browser';
+import {DndModule} from 'ng2-dnd';
 import { NgModule, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
+// bug: uncomment this when running playground.
 // import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+// uncomment this when running tests.
 import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
@@ -92,13 +95,16 @@ export class AppComponent implements OnInit {
     window.alert('selected ' + item.intValue )
   }
 
+  public dropped(item: any) {
+    window.alert('dropped: ' + item.dragData);
+  }
 }
 
 
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ],
-    imports: [ BrowserModule, DexihTableModule ]
+    imports: [ BrowserModule, DexihTableModule, DndModule ]
   })
   class AppModule {}
 

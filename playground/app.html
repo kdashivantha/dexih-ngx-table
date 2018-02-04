@@ -75,12 +75,22 @@
 
 
 <dexih-table [enableCellTemplate]="true" [enableCellValue]="false" [columns]="columns" [dataObservable]="tableData" heading="Table with custom cells">
-
-
     <ng-template #cell select="cell" let-value="value">
         <button class="btn btn-success">{{value}}</button>
     </ng-template>
-
 </dexih-table>
+
+<hr/>
+
+<button class="btn btn-primary" dnd-draggable [dragEnabled]="true" [dropZones]="['zone']" dragData="drop worked">
+    drag this to table.
+</button>
+<button class="btn btn-primary" dnd-draggable [dragEnabled]="true" [dropZones]="['zone1']" dragData="drop shouldn't have worked'">
+    this drag should not work
+</button>
+
+<dexih-table [dataObservable]="tableData" (onDrop)="dropped($event)" [dropZones]="['zone']" [enableSort]="true" [enableManualSort]="true"
+ heading="Droppable Table"></dexih-table>
+<hr/>
 
 <hr/>
