@@ -343,7 +343,6 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     };
 
     public onDropSuccess($event: any) {
-        console.debug('drop triggered');
         this.onDrop.emit($event);
     }
 

@@ -3,6 +3,7 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import {DndModule} from 'ng2-dnd';
+import { MarkdownModule } from 'ngx-md';
 import { NgModule, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -22,7 +23,8 @@ class DataModel {
       public boolValue: boolean,
       public codeValue: string,
       public toolTip: string,
-      public icon: string
+      public icon: string,
+      public markdown: string
   ) {}
 }
 
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit {
     { name: 'boolValue', title: 'Bool', format: 'Boolean' },
     { name: 'codeValue', title: 'Code', format: 'Code' },
     { name: 'codeValue', title: 'Html', format: 'Html' },
+    { name: 'markdown', title: 'Markdown', format: 'Md' },
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
@@ -70,11 +73,11 @@ export class AppComponent implements OnInit {
 
     let data = new Array<DataModel>();
     data.push(new DataModel(1, 'row3', new Date(date.getTime() + 30000), date,
-      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog'));
+      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**'));
     data.push(new DataModel(2, 'row2', new Date(date.getTime() + 300000), date,
-      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog'));
+      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', 'markdown **bold**'));
     data.push(new DataModel(3, 'row1', new Date(date.getTime() + 3000000), date,
-      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog'));
+      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold**'));
 
     this._tableData.next(data);
 
@@ -104,7 +107,7 @@ export class AppComponent implements OnInit {
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ],
-    imports: [ BrowserModule, DexihTableModule, DndModule ]
+    imports: [ BrowserModule, DexihTableModule, DndModule, MarkdownModule ]
   })
   class AppModule {}
 

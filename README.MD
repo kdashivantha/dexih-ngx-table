@@ -24,6 +24,11 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.27-beta.
+
+* Important: run `npm install ngx-md --save` when updating from previous version to add the markdown library to your project.
+* Added markdown format.  
+
 ### Release 0.1.26-beta.
 
 * Breaking: changed event name selectedItemsChange -> onSelectedChange
@@ -58,10 +63,10 @@ To install this library, run:
 $ npm install dexih-ngx-table --save
 ```
 
-There is also a dependency (for drag/drop) on the ng2-dnd library.  To install this library, run:
+There are also a dependencies (for drag/drop) on the ng2-dnd library, and the ngx-md (for markdown formatting) library.  To install these run:
 
 ```bash
-$ npm install ng2-dnd --save
+$ npm install ng2-dnd ngx-md --save
 ```
 
 You will need also need bootstrap styles included (version 3/4).  For example add this to your index.html header:
@@ -209,6 +214,7 @@ The following properties can be hard coded in the column settings an apply to al
   - `Boolean` - formats as a checkbox.
   - `Code` - formats code.
   - `Html` - renders a html snippet.
+  - `Md` - renders markdown format.
 - `width` - the width to apply to the table column (e.g. 10%, 100px).
 - `align` (`left`, `centre`, `right`) - the text alignment for the column.
 
