@@ -24,6 +24,10 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.28-beta.
+
+* Fix issue when Md format is null
+
 ### Release 0.1.27-beta.
 
 * Important: run `npm install ngx-md --save` when updating from previous version to add the markdown library to your project.

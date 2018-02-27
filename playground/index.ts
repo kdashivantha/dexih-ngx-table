@@ -10,9 +10,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 // bug: uncomment this when running playground.
-// import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
-import { DexihTableModule,  Column  }  from '../src';
+// import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -75,9 +75,9 @@ export class AppComponent implements OnInit {
     data.push(new DataModel(1, 'row3', new Date(date.getTime() + 30000), date,
       true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**'));
     data.push(new DataModel(2, 'row2', new Date(date.getTime() + 300000), date,
-      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', 'markdown **bold**'));
+      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null));
     data.push(new DataModel(3, 'row1', new Date(date.getTime() + 3000000), date,
-      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold**'));
+      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2**'));
 
     this._tableData.next(data);
 

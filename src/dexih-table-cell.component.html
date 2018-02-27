@@ -7,7 +7,7 @@
         <ng-template #other_content>
             <input *ngSwitchCase="'Boolean'" type="checkbox" disabled [ngModel]="row[column.name]" />
             <div *ngSwitchCase="'Html'" [innerHTML]="value"></div>
-            <markdown *ngSwitchCase="'Md'" [data]="value"></markdown>
+            <div *ngSwitchCase="'Md'"><markdown *ngIf="value" [data]="value"></markdown></div>
             <pre *ngSwitchCase="'Code'"><code>{{value}}</code></pre>
             <span *ngSwitchDefault>{{formattedValue}}</span>
         </ng-template>
