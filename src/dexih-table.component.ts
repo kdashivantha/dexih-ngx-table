@@ -20,6 +20,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Column, ColumnOperations, TableItem } from './dexih-table.models';
 import { MethodCall } from '@angular/compiler';
+import { format } from 'util';
 
 @Component({
     moduleId: module.id,
@@ -329,6 +330,10 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         return this.currentColumns.map(column => {
             let value = this.columnOperations.fetchFromObject(row, column.name);
             let formattedValue = this.columnOperations.formatValue(column, value);
+
+            if (typeof(formattedValue) === 'string') {
+                formattedValue = '"' + formattedValue + '"';
+            }
 
             if (formattedValue instanceof String) {
                 let result = formattedValue.replace(/"/g, '""');
