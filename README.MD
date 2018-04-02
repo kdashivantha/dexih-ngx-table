@@ -24,6 +24,10 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.29-beta.
+
+* Add double quotes around string values when exporting to csv.
+
 ### Release 0.1.28-beta.
 
 * Fix issue when Md format is null
