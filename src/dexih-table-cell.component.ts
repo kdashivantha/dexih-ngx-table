@@ -27,6 +27,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     ngOnInit() {
         if (this.column.name || this.column.name === 0) {
             this.value = this.columnOperations.fetchFromObject(this.row, this.column.name);
+            this.footer = this.columnOperations.fetchFromObject(this.row, this.column.footer);
             this.formattedValue = this.columnOperations.formatValue(this.column, this.value);
             this.alignment = this.setAlignment(this.value)
 

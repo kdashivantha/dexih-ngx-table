@@ -25,7 +25,8 @@ class DataModel {
       public codeValue: string,
       public toolTip: string,
       public icon: string,
-      public markdown: string
+      public markdown: string,
+      public markdownFooter: string
   ) {}
 }
 
@@ -47,7 +48,7 @@ export class AppComponent implements OnInit {
     { name: 'boolValue', title: 'Bool', format: 'Boolean' },
     { name: 'codeValue', title: 'Code', format: 'Code' },
     { name: 'codeValue', title: 'Html', format: 'Html' },
-    { name: 'markdown', title: 'Markdown', format: 'Md' },
+    { name: 'markdown', title: 'Markdown', format: 'Md', footer: 'markdownFooter' },
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
@@ -74,11 +75,11 @@ export class AppComponent implements OnInit {
 
     let data = new Array<DataModel>();
     data.push(new DataModel(1, 'row3', 'row 3 footer', new Date(date.getTime() + 30000), date,
-      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**'));
+      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**', 'footer **bold**'));
     data.push(new DataModel(2, 'row2', 'row 2 footer', new Date(date.getTime() + 300000), date,
-      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null));
+      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null));
     data.push(new DataModel(3, 'row1', 'row 1 footer', new Date(date.getTime() + 3000000), date,
-      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2**'));
+      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2**', 'footer2 **bold**'));
 
     this._tableData.next(data);
 
