@@ -18,6 +18,7 @@ class DataModel {
   constructor(
       public intValue: number,
       public stringValue: string,
+      public footerValue: string,
       public dateValue: Date,
       public timeValue: Date,
       public boolValue: boolean,
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
   columns = [
     { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
     { name: 'intValue', title: 'Int', format: '' },
-    { name: 'stringValue', title: 'String', format: '' },
+    { name: 'stringValue', title: 'String', format: '', footer: 'footerValue' },
     { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
     { name: 'dateValue', title: 'Date/Time', format: 'DateTime' },
     { name: 'dateValue', title: 'Date', format: 'Date' },
@@ -72,11 +73,11 @@ export class AppComponent implements OnInit {
     let date = new Date();
 
     let data = new Array<DataModel>();
-    data.push(new DataModel(1, 'row3', new Date(date.getTime() + 30000), date,
+    data.push(new DataModel(1, 'row3', 'row 3 footer', new Date(date.getTime() + 30000), date,
       true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**'));
-    data.push(new DataModel(2, 'row2', new Date(date.getTime() + 300000), date,
+    data.push(new DataModel(2, 'row2', 'row 2 footer', new Date(date.getTime() + 300000), date,
       true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null));
-    data.push(new DataModel(3, 'row1', new Date(date.getTime() + 3000000), date,
+    data.push(new DataModel(3, 'row1', 'row 1 footer', new Date(date.getTime() + 3000000), date,
       true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2**'));
 
     this._tableData.next(data);

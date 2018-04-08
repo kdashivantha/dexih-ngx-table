@@ -10,5 +10,6 @@
             <div *ngSwitchCase="'Md'"><markdown *ngIf="value" [data]="value"></markdown></div>
             <pre *ngSwitchCase="'Code'"><code>{{value}}</code></pre>
             <span *ngSwitchDefault>{{formattedValue}}</span>
+            <div><small *ngIf="column.footer">{{column.footer}}</small></div>
         </ng-template>
     </div>

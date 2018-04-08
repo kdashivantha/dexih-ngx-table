@@ -15,6 +15,7 @@ export class Column {
     public class: string;
     public control: string;
     public iconClass: string;
+    public footer: string;
 }
 
 export class ColumnOperations {

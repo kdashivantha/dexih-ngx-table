@@ -24,6 +24,10 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.30-beta.
+
+* Added footer property to cells.  
+
 ### Release 0.1.29-beta.
 
 * Add double quotes around string values when exporting to csv.
@@ -228,6 +232,7 @@ The following properties can be hard coded in the column settings an apply to al
 
 The following properties reference an property in the data row and are defined on a row by row basis:
 - `name` - value to populate the cell (this can be html formatted).
+- `footer` - value to place in "small" characters under the name.
 - `toolTip` - value to use as a tooltip for the cell.
 - `class` - value to use as a css class for the cell.
 - `iconClass` - the data property to use as a icon (note: this will be placed before the `name`)

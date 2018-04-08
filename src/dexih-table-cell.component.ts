@@ -18,6 +18,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     public value: any;
     public formattedValue: string;
     public alignment: string;
+    public footer: string;
 
     private columnOperations = new ColumnOperations();
 
