@@ -247,7 +247,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 this.data.forEach((row, index) => {
                     let isMatch = false;
                     this.currentColumns.forEach(column => {
-                        if (String(this.columnOperations.fetchFromObject(row, column.name)).toLowerCase().includes(filter)) {
+                        if (String(this.columnOperations.fetchFromObject(row, column.name)).toLowerCase().includes(filter) ||
+                            String(this.columnOperations.fetchFromObject(row, column.footer)).toLowerCase().includes(filter)) {
                             isMatch = true;
                         }
                     });
@@ -262,7 +263,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 this.tableItems.forEach(item => item.sortValue =
                         this.columnOperations.fetchFromObject(this.data[item.index], this.sortColumn));
             } else {
-                // if no sort colunn, sort to original order
+                // if no sort column, sort to original order
                 this.tableItems.forEach(item => item.sortValue = item.index);
             }
 
