@@ -11,9 +11,9 @@
 
     <div *ngIf="enableToolbar" class="dexih-table-toolbar">
         <div class="row">
-            <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
+            <div class="col">
                 <div class="form-inline">
-                    <button *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn btn-primary" title="Export the current data to a csv file.">
+                    <button *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn btn-primary m-1" title="Export the current data to a csv file.">
                         <i class="fa fa-floppy-o"></i>&nbsp;
                         <span class="hidden-sm hidden-xs">Export</span>
                     </button>
@@ -31,14 +31,12 @@
                     </ng-template>
                 </div>
             </div>
-            <hr class="row hidden-lg hidden-md" />
-            <div *ngIf="enableFilter && tableItems?.length > 0" class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-                <div [ngClass]="{disabled : manualSort}" class="input-group">
+            <div *ngIf="enableFilter && tableItems?.length > 0" class="align-self-end mr-3 ml-3">
+                <div [ngClass]="{disabled : manualSort}" class="input-group" style="width: 300px">
                     <span class="input-group-addon input-group-prepend">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
-                        
                     </span>
                     <input [ngModel]="filterString" [formControl]="filterControl" class="form-control input-md" placeholder="Search..." type="search"
                         name="filterString" />
