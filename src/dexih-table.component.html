@@ -14,7 +14,7 @@
             <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
                 <div class="form-inline">
                     <button *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn btn-primary" title="Export the current data to a csv file.">
-                        <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;
+                        <i class="fa fa-floppy-o"></i>&nbsp;
                         <span class="hidden-sm hidden-xs">Export</span>
                     </button>
 
@@ -36,7 +36,7 @@
                 <div [ngClass]="{disabled : manualSort}" class="input-group">
                     <span class="input-group-addon input-group-prepend">
                         <span class="input-group-text">
-                                <div class="search-icon"></div>
+                            <i class="fa fa-search"></i>
                         </span>
                         
                     </span>
@@ -55,15 +55,15 @@
                         <input type="checkbox" [(ngModel)]="selectAllState" (ngModelChange)="selectAll()">
                     </th>
                     <th class="text-center" *ngIf="enableManualSort" width="1%">
-                        <i class="sort-icon"></i>
+                        <i class="fa fa-sort"></i>
                     </th>
                     <th class="text-center" *ngIf="enableRowActions">Action</th>
                     <th class="text-center" *ngIf="enableRowStatus">Status</th>
                     <th class="text-center" *ngFor="let column of currentColumns">
-                        <span name="dexih-column-heading" (click)="enableSort && ( column.name || column.name == 0 ) && sort(column.name)">
-                            <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==1" class="sort-amount-down-icon pull-right"></i>
-                            <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==-1" class="sort-amount-up-icon pull-right"></i>
-                            {{column.title}}
+                        <span name="dexih-column-heading" class="d-flex d-flex-row" (click)="enableSort && ( column.name || column.name == 0 ) && sort(column.name)">
+                                {{column.title}}
+                                <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==1" class="fa fa-sort-amount-asc pull-right"></i>
+                            <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==-1" class="fa fa-sort-amount-desc pull-right"></i>
                         </span>
                     </th>
                 </tr>
@@ -108,8 +108,8 @@
     <div *ngIf="!tableItems && !error">
         <div class="row">
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
-                <h3 class="ajax-loading-animation">&nbsp;&nbsp;&nbsp;
-                    <span class="spinner-icon icon-refresh-animate"></span>
+                <h3>&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-spin fa-spinner"></i>
                     <span name="dexih-data-loading">Data is loading...</span>
                 </h3>
             </div>

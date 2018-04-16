@@ -21,52 +21,6 @@
 		border-bottom:1px solid #ccc;
 	}
 
-.icon-refresh-animate {
-  -animation: spin 2s infinite linear;
-  -ms-animation: spin 2s infinite linear;
-  -webkit-animation: spinw 2s infinite linear;
-  -moz-animation: spinm 2s infinite linear;
-}
-
-@keyframes spin {
-  from { transform: scale(1) rotate(0deg);}
-  to { transform: scale(1) rotate(360deg);}
-}
-
-@-webkit-keyframes spinw {
-  from { -webkit-transform: rotate(0deg);}
-  to { -webkit-transform: rotate(360deg);}
-}
-
-@-moz-keyframes spinm {
-  from { -moz-transform: rotate(0deg);}
-  to { -moz-transform: rotate(360deg);}
-}
-
-.search-icon {
-	content: url(images/search.svg);
-	width: 20px;
-}
-
-.spinner-icon {
-	content: url(images/spinner.svg);
-	width: 20px;
-}
-
-.sort-amount-down-icon {
-	content: url(images/sort-amount-down.svg);
-	width: 20px;
-}
-
-.sort-amount-up-icon {
-	content: url(images/sort-amount-up.svg);
-	width: 20px;
-}
-
-.sort-icon {
-	content: url(images/sort.svg);
-	height: 15px;
-}
 
 // .search {
 // 	position: relative;
