@@ -24,6 +24,14 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.1.37-beta.
+
+* Breaking  - Remove enableActions, enableRowActions, enableRowStatus, enableRowStatus, enableMultiSelectActions, enableSingleSelectActions.  These sections now automatically appear when the template is declared
+
+### Release 0.1.36-beta.
+
+* Breaking  - Remove enableActions, enableRowActions, enableRowStatus, enableRowStatus, enableMultiSelectActions, enableSingleSelectActions.  These sections now automatically appear when the template is declared
+
 ### Release 0.1.33-beta.
 
 * Fixed bootstrap 4 issues
@@ -270,17 +278,6 @@ Table styling:
 - `tableClass` (default `table table-striped table-bordered table-hover`) - Css class to apply to the table;
 
 Customizing Cells
-- `enableCellTemplate` (`true`, `false` default) - Displays the cell template, which allows custom controls to be included in each cell.
-- `enableCellValue` (`true` default, `false`) - Displays the formatted cell value in each cell.
-
-The following properties can be used to enable `template` areas of the table which can be customized with user controls:
-
-- `enableActions` (`true` default) - Displays a row actions section which is the first position on the top left of the table.  This can be used for actions such as `New`.
-- `enableMultiSelectActions` (`true`, `false` default) - Displays a mutli-select section on the top left of the table, when one (or more) items are selected.  This can be used for actions allowed on multiple items such as `Delete`.
-- `enableSingleSelectActions` (`true` default, `false`) - Displays a single-select section on the top left of the table, when one item is selected.  This can be used for actions allowed one row only such as `Open`.
-- `enableRowActions` (`true`, `false` default) - Enables a section on the first cell (or after the checkbox) of the table, which can be used for custom controls.
-- `enableRowStatus` (`true`, `false` default) - Enables a section (after the rowAction) which can be used for custom controls.
-- `enableToolbar` (`true` default, `false`) - Enables a toolbar section above the table.  Note, if this is false action buttons, and the search filter will be hidden.
 - `error` (null default) - If set, displays the specified error message at the top of the table.
 - `heading` (null default) - If set, displays the specified heading message at the top of the table.
 - `dropZones` (empty array default) - Array of dropZones which will trigger the `onDrop` event.  See [ng2-dnd](https://github.com/akserg/ng2-dnd) for documentation on drag/drop.
@@ -290,10 +287,6 @@ The templates objects can be populated using `ng-template` tags within the `dexi
 ```xml
 <dexih-table 
     [enableMultiSelect]="true" 
-    [enableRowActions]="false" 
-    [enableRowStatus]="true" 
-    [enableSingleSelectActions]="true" 
-    [enableMultiSelectActions]="true" 
     [columns]="columns" 
     [tableData]="tableData">
 

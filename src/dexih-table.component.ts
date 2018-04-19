@@ -31,15 +31,15 @@ import { format } from 'util';
 export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, DoCheck {
     @Input() public dataObservable: Observable<Array<any>>;
     @Input() public data: Array<any>;
-    @Input() public enableActions = true;
+//    @Input() public enableActions = true;
     @Input() public enableToolbar = true;
     @Input() public enableMultiSelect: boolean;
-    @Input() public enableRowActions: boolean;
-    @Input() public enableRowStatus: boolean;
-    @Input() public enableCellTemplate = false;
+//    @Input() public enableRowActions: boolean;
+//    @Input() public enableRowStatus: boolean;
+//    @Input() public enableRowStatus = false;
     @Input() public enableCellValue = true;
-    @Input() public enableMultiSelectActions: boolean;
-    @Input() public enableSingleSelectActions = true;
+//    @Input() public enableMultiSelectActions: boolean;
+//    @Input() public enableSingleSelectActions = true;
     @Input() public enableManualSort = false;
     @Input() public enableSort = true;
     @Input() public enableFilter = true;
@@ -116,8 +116,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         }
 
         if (this.enableMultiSelect) { this.columnCount++; }
-        if (this.enableRowActions) { this.columnCount++; }
-        if (this.enableRowStatus) { this.columnCount++; }
+        if (this.rowActionTemplate) { this.columnCount++; }
+        if (this.rowStatusTemplate) { this.columnCount++; }
         if (this.enableManualSort) { this.columnCount++; }
     }
 

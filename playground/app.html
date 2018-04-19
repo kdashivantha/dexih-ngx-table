@@ -1,4 +1,4 @@
-<dexih-table [data]="null" [enableRowActions]="true" heading="Table still loading">
+<dexih-table [data]="null" heading="Table still loading">
     <ng-template #actions let-items="items">
         <button class="btn btn-danger">Cancel</button>
     </ng-template>
@@ -13,7 +13,7 @@
 </dexih-table>
 <hr/>
 
-<dexih-table [data]="[]" [columns]="arrayColumns" [enableRowActions]="true" heading="Table no data">
+<dexih-table [data]="[]" [columns]="arrayColumns" heading="Table no data">
     <ng-template #actions let-items="items">
         <button class="btn btn-danger">Cancel</button>
     </ng-template>
@@ -53,9 +53,9 @@
 <hr/>
 
 
-<dexih-table [enableMultiSelect]="true" [enableRowActions]="true" [enableRowStatus]="true" [enableSingleSelectActions]="true"
+<dexih-table [enableMultiSelect]="true" 
     [enableSort]="true" [enableManualSort]="true" [enableSaveCsv]="true" (rowClick)="selectedItem($event)" heading="Table with export, sort, row action enabled."
-    [enableMultiSelectActions]="true" [columns]="columns" [dataObservable]="tableData">
+    [columns]="columns" [dataObservable]="tableData">
     <ng-template #selectedItemAction select="selectedItemAction" let-item="item">
         <button class="btn btn-primary" (click)="selectedItem(item)">Open</button>
     </ng-template>
@@ -86,7 +86,7 @@
 <hr/>
 
 
-<dexih-table [enableCellTemplate]="true" [enableCellValue]="false" [columns]="columns" [dataObservable]="tableData" heading="Table with custom cells">
+<dexih-table [enableCellValue]="false" [columns]="columns" [dataObservable]="tableData" heading="Table with custom cells">
     <ng-template #cell select="cell" let-value="value">
         <button class="btn btn-success">{{value}}</button>
     </ng-template>

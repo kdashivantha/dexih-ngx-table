@@ -9,24 +9,24 @@
         </div>
     </div>
 
-    <div *ngIf="enableToolbar" class="dexih-table-toolbar">
+    <div *ngIf="actionsTemplate || selectedItemActionsTemplate || selectedItemsActionsTemplate || ( enableFilter && tableItems?.length > 0)" class="dexih-table-toolbar">
         <div class="row">
             <div class="col">
                 <div class="form-inline">
                     <button *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn btn-primary m-1" title="Export the current data to a csv file.">
                         <i class="fa fa-floppy-o"></i>&nbsp;
-                        <span class="hidden-sm hidden-xs">Export</span>
+                        <span class="d-none d-md-inline">Export</span>
                     </button>
 
-                    <ng-template *ngIf="enableActions" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
+                    <ng-template *ngIf="actionsTemplate" [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
                         [ngTemplateOutletContext]="items">
                     </ng-template>
                     &nbsp;
-                    <ng-template *ngIf="enableSingleSelectActions && selectedItemsCount == 1" [ngTemplateOutlet]="selectedItemActionsTemplate"
+                    <ng-template *ngIf="selectedItemActionsTemplate && selectedItemsCount == 1" [ngTemplateOutlet]="selectedItemActionsTemplate"
                         [ngTemplateOutletContext]="{item: currentSelectedItems[0]}" [ngTemplateOutletContext]="item">
                     </ng-template>
                     &nbsp;
-                    <ng-template *ngIf="enableMultiSelectActions && selectedItemsCount > 0" [ngTemplateOutlet]="selectedItemsActionsTemplate"
+                    <ng-template *ngIf="selectedItemsActionsTemplate && selectedItemsCount > 0" [ngTemplateOutlet]="selectedItemsActionsTemplate"
                         [ngTemplateOutletContext]="{items: currentSelectedItems}" [ngTemplateOutletContext]="items">
                     </ng-template>
                 </div>
@@ -55,8 +55,8 @@
                     <th class="text-center" *ngIf="enableManualSort" width="1%">
                         <i class="fa fa-sort"></i>
                     </th>
-                    <th class="text-center" *ngIf="enableRowActions">Action</th>
-                    <th class="text-center" *ngIf="enableRowStatus">Status</th>
+                    <th class="text-center" *ngIf="rowActionTemplate">Action</th>
+                    <th class="text-center" *ngIf="rowStatusTemplate">Status</th>
                     <th class="text-center" *ngFor="let column of currentColumns">
                         <span name="dexih-column-heading" class="d-flex d-flex-row" (click)="enableSort && ( column.name || column.name == 0 ) && sort(column.name)">
                                 {{column.title}}
@@ -77,21 +77,21 @@
                         </td>
                         <td *ngIf="enableManualSort">
                             <button class="btn btn-sm btn-primary" dnd-sortable [sortableIndex]="i" (onDropSuccess)="manualSortChange()" title="Drag button to move row to another position">
-                                #
+                                <i class="fa fa-sort"></i>
                             </button>
                         </td>
-                        <td *ngIf="enableRowActions">
+                        <td *ngIf="rowActionTemplate">
                             <ng-template [ngTemplateOutlet]="rowActionTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
                             </ng-template>
                         </td>
-                        <td *ngIf="enableRowStatus">
+                        <td *ngIf="rowStatusTemplate">
                             <ng-template [ngTemplateOutlet]="rowStatusTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
                             </ng-template>
                         </td>
                         <td name="dexih-table-cell" *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
                             (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
 
-                            <ng-template *ngIf="enableCellTemplate" [ngTemplateOutlet]="cellTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index], column: column, value: data[tableItem.index][column.name]}"
+                            <ng-template *ngIf="cellTemplate" [ngTemplateOutlet]="cellTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index], column: column, value: data[tableItem.index][column.name]}"
                                 [ngTemplateOutletContext]="item" [ngTemplateOutletContext]="column" [ngTemplateOutletContext]="value">
                             </ng-template>
 
