@@ -15,6 +15,7 @@
 
 <dexih-table [data]="[]" [columns]="arrayColumns" heading="Table no data">
     <ng-template #actions let-items="items">
+        <button class="btn btn-success">Ok</button>
         <button class="btn btn-danger">Cancel</button>
     </ng-template>
 </dexih-table>
@@ -33,11 +34,11 @@
 <div style="width: 320px">
     <dexih-table [dataObservable]="arrayData" [columns]="columns"  heading="Responsive table (horizontal across bar)">
         <ng-template #actions let-items="items">
-            <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-            <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-            <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-            <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-            <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
+            <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+            <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+            <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+            <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+            <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
         </ng-template>
     </dexih-table>
 </div>
@@ -65,12 +66,12 @@
     </ng-template>
 
     <ng-template #actions let-items="items">
-        <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-        <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-        <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-        <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-        <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
-        <button class="btn btn-primary m-1" (click)="selectedItems(items)">Button</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
+        <button class="btn btn-primary" (click)="selectedItems(items)">Button</button>
     </ng-template>
 
     <ng-template #rowStatus select="rowStatus" let-table="item">

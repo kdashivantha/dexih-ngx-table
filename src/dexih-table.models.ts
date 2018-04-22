@@ -52,13 +52,13 @@ export class ColumnOperations {
 
     // return the property value from any object.
     fetchFromObject(obj: any, prop: any): any {
-        if (typeof obj === 'undefined' || typeof prop === 'undefined') {
+        if ( typeof obj === 'undefined' || typeof prop === 'undefined') {
             return null;
         }
 
         let propType = typeof prop;
         if (propType !== 'number') {
-            // if the proerty has a "." recurse to the next nesting.
+            // if the property has a "." recurse to the next nesting.
             let _index = prop.indexOf('.');
             if (_index > -1) {
                 return this.fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index + 1));

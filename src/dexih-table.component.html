@@ -1,4 +1,4 @@
-<div class="no-padding">
+<div class="p-0">
     <div *ngIf="heading" class="dexih-table-heading">
         <h3>{{heading}}</h3>
     </div>
@@ -12,9 +12,9 @@
     <div *ngIf="actionsTemplate || selectedItemActionsTemplate || selectedItemsActionsTemplate || ( enableFilter && tableItems?.length > 0)" class="dexih-table-toolbar">
         <div class="row">
             <div class="col">
-                <div class="form-inline">
+                <div class="btn-toolbar">
                     <button *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn btn-primary m-1" title="Export the current data to a csv file.">
-                        <i class="fa fa-floppy-o"></i>&nbsp;
+                        <i class="fa fa-floppy-o fa-save"></i>&nbsp;
                         <span class="d-none d-md-inline">Export</span>
                     </button>
 
@@ -59,9 +59,9 @@
                     <th class="text-center" *ngIf="rowStatusTemplate">Status</th>
                     <th class="text-center" *ngFor="let column of currentColumns">
                         <span name="dexih-column-heading" class="d-flex d-flex-row" (click)="enableSort && ( column.name || column.name == 0 ) && sort(column.name)">
-                                {{column.title}}
-                                <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==1" class="fa fa-sort-amount-asc pull-right"></i>
-                            <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==-1" class="fa fa-sort-amount-desc pull-right"></i>
+                            {{column.title}}
+                            <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==1" title="Sorted ascending" class="fa fa-sort-amount-asc fa-sort-amount-down mx-auto pl-1 pull-right"></i>
+                            <i *ngIf="(sortColumn || sortColumn == 0) && sortColumn == column.name && sortDirection==-1" title="Sorted descending" class="fa fa-sort-amount-desc fa-sort-amount-up mx-auto pl-1 pull-right"></i>
                         </span>
                     </th>
                 </tr>
