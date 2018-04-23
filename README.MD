@@ -128,7 +128,7 @@ Populate this data into the table as follows:
 </dexih-table>
 ```
 
-For a quick demo and sample code refer to the following [plnkr](http://plnkr.co/edit/uyPfy4930iI0E0aPv0Mi?p=preview).
+For a quick demo and sample code refer to the following [plnkr](http://plnkr.co/edit/G3RNCVGMXhodH7Ap).
 
 ## Using the Table Component
 
