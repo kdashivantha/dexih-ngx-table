@@ -24,6 +24,11 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.2.0.
+
+* Removed beta tag.
+* Fixed minor version inconsistencies.
+
 ### Release 0.1.38-beta.
 
 * Added support for Font Awesome v5.0.  For icons to appear in table either Font Awsome 5.0 or 4.7 must be referenced as per [issue](https://github.com/DataExperts/dexih-ngx-table/issues/2)

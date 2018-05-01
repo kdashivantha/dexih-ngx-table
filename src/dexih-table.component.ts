@@ -16,11 +16,10 @@ import {
     KeyValueDiffer
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs';
 
 import { Column, ColumnOperations, TableItem } from './dexih-table.models';
 import { MethodCall } from '@angular/compiler';
-import { format } from 'util';
 
 @Component({
     moduleId: module.id,
@@ -31,15 +30,9 @@ import { format } from 'util';
 export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit, DoCheck {
     @Input() public dataObservable: Observable<Array<any>>;
     @Input() public data: Array<any>;
-//    @Input() public enableActions = true;
     @Input() public enableToolbar = true;
     @Input() public enableMultiSelect: boolean;
-//    @Input() public enableRowActions: boolean;
-//    @Input() public enableRowStatus: boolean;
-//    @Input() public enableRowStatus = false;
     @Input() public enableCellValue = true;
-//    @Input() public enableMultiSelectActions: boolean;
-//    @Input() public enableSingleSelectActions = true;
     @Input() public enableManualSort = false;
     @Input() public enableSort = true;
     @Input() public enableFilter = true;

@@ -14,7 +14,7 @@ import {
     DraggableHandleComponent,
     DroppableComponent,
 } from 'ng2-dnd';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 
 describe('DexihTableComponentTest', () => {
@@ -58,22 +58,22 @@ describe('DexihTableComponentTest', () => {
       beforeEach(() => {
         fixture = TestBed.createComponent(DexihTableComponent);
         comp = fixture.componentInstance; // DexihTableComponent test instance
-  
+
         let arrayData = [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']];
         comp.data = arrayData;
         fixture.detectChanges();
       });
-  
+
       it('test - table is shown when data is available', () => {
         // check the data is loading animation is not visible
         de = fixture.debugElement.query(By.css('[name="dexih-data-loading"]'));
         expect(de).toBeNull();
-  
+
         // check the table is shown
         de = fixture.debugElement.query(By.css('[name="dexih-table"]'));
         expect(de).not.toBeNull();
       });
-  
+
       it('test - check column headings', () => {
         // check the column headings have default values
         let headings = de.queryAll(By.css('[name="dexih-column-heading"]'));

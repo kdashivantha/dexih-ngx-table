@@ -1,5 +1,4 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { isNumeric } from 'rxjs/util/isNumeric';
 import { Column, ColumnOperations } from './dexih-table.models';
 
 
@@ -68,7 +67,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
             this.column.format === 'Time' ||
             this.column.format === 'DateTime' ||
             value instanceof Date ||
-            isNumeric(value)
+            this.isNumeric(value)
         ) {
             return 'right';
         } else if (this.column.format === 'Boolean') {
@@ -76,6 +75,10 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
         }
 
         return '';
+    }
+
+    isNumeric(n: any): boolean {
+        return !isNaN(parseFloat(n)) && isFinite(n);
     }
 }
 

@@ -25,9 +25,9 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+      'rxjs': 'npm:rxjs',
 
       // other libraries
-      rxjs: 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'ng2-dnd': 'npm:ng2-dnd/bundles/ng2-dnd.umd.js',
       'ngx-md': 'npm:ngx-md/bundles/ngx-md.umd.js', 
@@ -44,7 +44,8 @@
         }
       },
       rxjs: {
-        defaultExtension: 'js'
+        defaultExtension: 'js',
+        main: 'Rx.js'
       },
       'dexih-ngx-table': {
         main: 'dexih-ngx-table.umd.js',

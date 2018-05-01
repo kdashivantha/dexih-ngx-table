@@ -1,6 +1,6 @@
 {
   "name": "dexih-ngx-table",
-  "version": "0.1.38-beta",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/DataExperts/dexih-ngx-table"
@@ -21,12 +21,11 @@
   "jsnext:main": "dexih-ngx-table.js",
   "typings": "dexih-ngx-table.d.ts",
   "peerDependencies": {
-    "@angular/core": ">= 4.0.0",
-    "@angular/forms": ">= 4.0.0",
+    "@angular/core": ">= 5.0.0",
+    "@angular/forms": ">= 5.0.0",
     "rxjs": ">= 5.0.0",
     "ng2-dnd": ">= 4.0.0",
     "ngx-md": ">= 3.1.1",
-
     "zone.js": ">= 0.8.0"
   }
 }
