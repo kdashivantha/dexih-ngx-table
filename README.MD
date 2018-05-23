@@ -24,6 +24,12 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.3.0.
+
+* **Breaking** - Updated for Angular 6.  This version will not work with any versions less than Angular 6 (use version 0.2.x if you need angular 5x compatibility).
+* ngx-md library must be updated to version 6 (add "ngx-md": "^6.0.0" to package.json).  Note: the ngx-md library has breaking change an import module name change from `MarkdownModule` to `NgxMdModule`
+* There are changes in angular 6 around decorators, so I had to remove the forRoot() declarations in the module.  This caused trouble when loading modules from systemjs.config.js, however seemed ok when using a bootstrap loader.  If you're getting injection or null errors, try adding DndModule.forRoot(), NgxMdModule.forRoot() to your modules import.
+
 ### Release 0.2.0.
 
 * Removed beta tag.

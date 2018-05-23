@@ -6,15 +6,12 @@ import { DebugElement } from '@angular/core';
 
 import { DexihTableModule,  Column  }  from '.';
 import { DexihTableComponent  }  from './dexih-table.component';
-import {
-    DndModule,
-    DragDropConfig,
-    DragDropService,
-    DraggableComponent,
-    DraggableHandleComponent,
-    DroppableComponent,
-} from 'ng2-dnd';
-import { Observable } from 'rxjs';
+
+import { DndModule } from 'ng2-dnd';
+import { NgxMdModule } from 'ngx-md';
+
+import { Observable, interval, pipe } from 'rxjs';
+import {first} from 'rxjs/operators';
 
 
 describe('DexihTableComponentTest', () => {
@@ -30,7 +27,7 @@ describe('DexihTableComponentTest', () => {
       ],
       providers: [
       ],
-      imports: [ BrowserModule, DexihTableModule ]
+      imports: [ BrowserModule, DexihTableModule, DndModule.forRoot(), NgxMdModule.forRoot() ]
       })
     .compileComponents();  // compile template and css
   }));
@@ -84,7 +81,7 @@ describe('DexihTableComponentTest', () => {
       });
 
       it('test - check data', () => {
-        // check the column headings have default values
+        // check the rows have loaded
         let rows = de.queryAll(By.css('[name="dexih-table-row"]'));
         expect(rows.length).toEqual(3);
         let row = rows[0];
@@ -106,7 +103,7 @@ describe('DexihTableComponentTest', () => {
         input.dispatchEvent(new Event('input'));
 
         // delay before check, as the filter waits short period before updating table.
-        Observable.interval(1000).first().subscribe(() => {
+        interval(1000).pipe(first()).subscribe(() => {
           fixture.detectChanges();
 
           // check the filter makes 1 row
@@ -118,7 +115,7 @@ describe('DexihTableComponentTest', () => {
           input.value = '';
           input.dispatchEvent(new Event('input'));
 
-          Observable.interval(1000).first().subscribe(() => {
+          interval(1000).pipe(first()).subscribe(() => {
             fixture.detectChanges();
             let table = fixture.debugElement.query(By.css('[name="dexih-table"]'));
             rows = table.queryAll(By.css('[name="dexih-table-row"]'));
