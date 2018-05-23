@@ -38,7 +38,7 @@
                             <i class="fa fa-search"></i>
                         </span>
                     </span>
-                    <input [ngModel]="filterString" [formControl]="filterControl" class="form-control input-md" placeholder="Search..." type="search"
+                    <input [formControl]="filterControl" class="form-control input-md" placeholder="Search..." type="search"
                         name="filterString" />
                 </div>
             </div>
@@ -108,7 +108,7 @@
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
                 <h3>&nbsp;&nbsp;&nbsp;
                     <i class="fa fa-spin fa-spinner"></i>
-                    <span name="dexih-data-loading">Data is loading...</span>
+                    <span name="dexih-data-loading">{{loadingMessage}}</span>
                 </h3>
             </div>
         </div>

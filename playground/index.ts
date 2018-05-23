@@ -3,16 +3,16 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import {DndModule} from 'ng2-dnd';
-import { MarkdownModule } from 'ngx-md';
+import { NgxMdModule } from 'ngx-md';
 import { NgModule, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 // bug: uncomment this when running playground.
-// import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
-import { DexihTableModule,  Column  }  from '../src';
+// import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -109,8 +109,8 @@ export class AppComponent implements OnInit {
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ],
-    imports: [ BrowserModule, DexihTableModule, DndModule, MarkdownModule ]
+    imports: [ BrowserModule, DexihTableModule, DndModule.forRoot(), NgxMdModule.forRoot() ]
   })
   class AppModule {}
 
-  platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

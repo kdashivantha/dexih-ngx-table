@@ -17,6 +17,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { Column, ColumnOperations, TableItem } from './dexih-table.models';
 import { MethodCall } from '@angular/compiler';
@@ -50,6 +51,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public error: string;
     @Input() public heading: string;
     @Input() public dropZones: string[] = [];
+    @Input() public loadingMessage = 'Data is loading...';
 
     @Output() rowClick: EventEmitter<any>
         = new EventEmitter<any>();
@@ -189,7 +191,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
             // monitor changes to the filter control, and update if updated after 500ms.
             if (this.filterSubscription) { this.filterSubscription.unsubscribe(); }
             this.filterSubscription = this.filterControl.valueChanges
-                .debounceTime(500)
+                .pipe(debounceTime(500))
                 .subscribe(newValue => {
                     this.filterString = newValue;
                     this.updateFilter();

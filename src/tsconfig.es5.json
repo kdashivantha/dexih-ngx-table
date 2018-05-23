@@ -21,6 +21,7 @@
     "annotateForClosureCompiler": false,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
+    "skipMetadataEmit": false,
     "flatModuleOutFile": "dexih-ngx-table.js",
     "flatModuleId": "dexih-ngx-table"
   },
