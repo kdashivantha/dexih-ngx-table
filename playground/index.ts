@@ -10,9 +10,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 // bug: uncomment this when running playground.
-// import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
-import { DexihTableModule,  Column  }  from '../src';
+// import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -109,7 +109,12 @@ export class AppComponent implements OnInit {
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [ AppComponent ],
-    imports: [ BrowserModule, DexihTableModule, DndModule.forRoot(), NgxMdModule.forRoot() ]
+    imports: [
+      BrowserModule,
+      DexihTableModule,
+      DndModule.forRoot(),
+      NgxMdModule.forRoot()
+    ]
   })
   class AppModule {}
 

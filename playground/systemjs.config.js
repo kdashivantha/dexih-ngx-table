@@ -31,9 +31,10 @@
       // other libraries
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'ng2-dnd': 'npm:ng2-dnd/bundles/ng2-dnd.umd.js',
-      'ngx-md': 'npm:ngx-md/bundles/ngx-md.umd.js', 
+
       'marked': 'npm:marked/marked.min.js',
       'prismjs': 'npm:prismjs/prism.js',
+      'ngx-md': 'npm:ngx-md/bundles/ngx-md.umd.js', 
       
       'dexih-ngx-table': '../dist'
     },
