@@ -80,5 +80,17 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     isNumeric(n: any): boolean {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
+
+    getRoute(event: any) {
+        let element = event.target;
+        while (element) {
+            let link: string = element.getAttribute('href');
+            if (link.startsWith('http://') || link.startsWith('https://')) {
+                window.open(link);
+            }
+            event.preventDefault();
+            element = element.parentElement;
+        }
+    }
 }
 

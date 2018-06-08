@@ -79,7 +79,8 @@ export class AppComponent implements OnInit {
     data.push(new DataModel(2, 'row2', 'row 2 footer', new Date(date.getTime() + 300000), date,
       true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null));
     data.push(new DataModel(3, 'row1', 'row 1 footer', new Date(date.getTime() + 3000000), date,
-      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2**', 'footer2 **bold**'));
+      true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2** [link](http://google.com)',
+        'footer2 **bold** [link](http://google.com)'));
 
     this._tableData.next(data);
 

@@ -7,8 +7,8 @@
         <ng-template #other_content>
             <input *ngSwitchCase="'Boolean'" type="checkbox" disabled [ngModel]="row[column.name]" />
             <div *ngSwitchCase="'Html'" [innerHTML]="value"></div>
-            <div *ngSwitchCase="'Md'">
-                <markdown *ngIf="value" [data]="value"></markdown>
+            <div *ngSwitchCase="'Md'" (click)="getRoute($event)">
+                <markdown *ngIf="value" [data]="value" ></markdown>
                 <div><small *ngIf="footer"><markdown [data]="footer"></markdown></small></div>
             </div>
             <pre *ngSwitchCase="'Code'"><code>{{value}}</code></pre>
