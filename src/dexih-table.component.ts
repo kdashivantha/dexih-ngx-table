@@ -20,10 +20,8 @@ import { Observable, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { Column, ColumnOperations, TableItem } from './dexih-table.models';
-import { MethodCall } from '@angular/compiler';
 
 @Component({
-    moduleId: module.id,
     selector: 'dexih-table',
     templateUrl: './dexih-table.component.html',
     styleUrls: [ './dexih-table.component.scss' ]
@@ -231,7 +229,11 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     }
 
     selectRowClick(row: any) {
-        this.rowClick.emit(row);
+        // if there is a selection don't raise the event.
+        let selection = window.getSelection();
+        if (selection.type !== 'Range') {
+            this.rowClick.emit(row);
+        }
     }
 
     private updateFilter() {

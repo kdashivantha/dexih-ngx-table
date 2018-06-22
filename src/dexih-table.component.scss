@@ -15,12 +15,53 @@
   background: #9b9b9b;
 }
 
+.icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
+}
+
+.icon-color {
+  fill: white;
+}
+
 .dexih-table-error {
 		display:block;
 		padding:8px 10px;
 		border-bottom:1px solid #ccc;
 	}
 
+  .loader-container {
+    margin: 30px;
+  }
+  .loader {
+    display: inline-flex;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: loader-spin 2s linear infinite;
+    animation: loader-spin 2s linear infinite;
+  }
+
+  .loader-text {
+    margin-left: 20px;
+    display: inline-flex;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  @-webkit-keyframes loader-spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes loader-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 
 // .search {
 // 	position: relative;
