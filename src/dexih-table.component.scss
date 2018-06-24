@@ -15,15 +15,6 @@
   background: #9b9b9b;
 }
 
-.icon {
-  width: 15px;
-  height: 15px;
-  margin-right: 3px;
-}
-
-.icon-color {
-  fill: white;
-}
 
 .dexih-table-error {
 		display:block;
@@ -31,10 +22,10 @@
 		border-bottom:1px solid #ccc;
 	}
 
-  .loader-container {
+  .table-loader-container {
     margin: 30px;
   }
-  .loader {
+  .table-loader {
     display: inline-flex;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
@@ -45,7 +36,7 @@
     animation: loader-spin 2s linear infinite;
   }
 
-  .loader-text {
+  .table-loader-text {
     margin-left: 20px;
     display: inline-flex;
     text-align: center;

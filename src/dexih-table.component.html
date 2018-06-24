@@ -99,14 +99,6 @@
                                 </svg>
                             </button>
                         </td>
-                        <td *ngIf="rowActionTemplate">
-                            <ng-template [ngTemplateOutlet]="rowActionTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
-                            </ng-template>
-                        </td>
-                        <td *ngIf="rowStatusTemplate">
-                            <ng-template [ngTemplateOutlet]="rowStatusTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
-                            </ng-template>
-                        </td>
                         <td name="dexih-table-cell" *ngFor="let column of currentColumns" [ngStyle]="{'text-align': column.align, 'width': column.width, 'background-color': column.backgroundColor, 'text-color': column.textColor}"
                             (click)="selectRowClick(data[tableItem.index])" [title]="data[tableItem.index][column.tooltip] ? data[tableItem.index][column.tooltip] : ''">
 
@@ -115,6 +107,14 @@
                             </ng-template>
 
                             <dexih-table-cell *ngIf="enableCellValue" [column]="column" [row]="data[tableItem.index]"></dexih-table-cell>
+                        </td>
+                        <td *ngIf="rowActionTemplate">
+                            <ng-template [ngTemplateOutlet]="rowActionTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
+                            </ng-template>
+                        </td>
+                        <td *ngIf="rowStatusTemplate">
+                            <ng-template [ngTemplateOutlet]="rowStatusTemplate" [ngTemplateOutletContext]="{item: data[tableItem.index]}" [ngTemplateOutletContext]="item">
+                            </ng-template>
                         </td>
                     </tr>
                 </ng-template>
@@ -125,9 +125,9 @@
     <div *ngIf="!tableItems && !error">
         <div class="row">
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
-                <div class="loader-container">
-                <div class="loader"></div>
-                <div name="dexih-data-loading" class="loader-text">{{loadingMessage}}</div>
+                <div class="table-loader-container">
+                <div class="table-loader"></div>
+                <div name="dexih-data-loading" class="table-loader-text">{{loadingMessage}}</div>
             </div>
             </div>
         </div>

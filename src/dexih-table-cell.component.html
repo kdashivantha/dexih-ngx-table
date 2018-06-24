@@ -8,12 +8,14 @@
             <input *ngSwitchCase="'Boolean'" type="checkbox" disabled [ngModel]="row[column.name]" />
             <div *ngSwitchCase="'Html'" [innerHTML]="value"></div>
             <div *ngSwitchCase="'Md'" (click)="getRoute($event)">
+                <div><small *ngIf="header"><markdown [data]="header"></markdown></small></div>
                 <markdown *ngIf="value" [data]="value" ></markdown>
                 <div><small *ngIf="footer"><markdown [data]="footer"></markdown></small></div>
             </div>
             <pre *ngSwitchCase="'Code'"><code>{{value}}</code></pre>
             <span *ngSwitchDefault>
-                {{formattedValue}}
+                <div><small *ngIf="header">{{header}}</small></div>
+                    {{formattedValue}}
                 <div><small *ngIf="footer">{{footer}}</small></div>
             </span>
         </ng-template>
