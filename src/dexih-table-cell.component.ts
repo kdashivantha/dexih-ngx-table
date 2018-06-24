@@ -18,6 +18,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     public formattedValue: string;
     public alignment: string;
     public footer: string;
+    public header: string;
 
     private columnOperations = new ColumnOperations();
 
@@ -27,6 +28,7 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
         if (this.column.name || this.column.name === 0) {
             this.value = this.columnOperations.fetchFromObject(this.row, this.column.name);
             this.footer = this.columnOperations.fetchFromObject(this.row, this.column.footer);
+            this.header = this.columnOperations.fetchFromObject(this.row, this.column.header);
             this.formattedValue = this.columnOperations.formatValue(this.column, this.value);
             this.alignment = this.setAlignment(this.value)
 

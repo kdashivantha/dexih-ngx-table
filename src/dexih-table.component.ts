@@ -247,8 +247,10 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                     this.currentColumns.forEach(column => {
                         const columnNameValue = this.columnOperations.fetchFromObject(dataRow, column.name);
                         const columnFooterValue = this.columnOperations.fetchFromObject(dataRow, column.footer);
+                        const columnHeaderValue = this.columnOperations.fetchFromObject(dataRow, column.header);
                         if ((columnNameValue != null && String(columnNameValue).toLowerCase().includes(filter)) ||
-                            (columnFooterValue != null && String(columnFooterValue).toLowerCase().includes(filter)) ) {
+                            (columnFooterValue != null && String(columnFooterValue).toLowerCase().includes(filter)) ||
+                            (columnHeaderValue != null && String(columnHeaderValue).toLowerCase().includes(filter)) ) {
                             isMatch = true;
                         }
                     });

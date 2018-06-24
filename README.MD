@@ -24,7 +24,7 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
-### Release 0.3.7
+### Release 0.3.8
 
 * Added header property to cell data.
 

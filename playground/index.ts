@@ -10,15 +10,16 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 // bug: uncomment this when running playground.
-// import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
-import { DexihTableModule,  Column  }  from '../src';
+// import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
       public intValue: number,
       public stringValue: string,
       public footerValue: string,
+      public headerValue: string,
       public dateValue: Date,
       public timeValue: Date,
       public boolValue: boolean,
@@ -40,7 +41,7 @@ export class AppComponent implements OnInit {
   columns = [
     { title: 'Icon', iconClass: 'icon', tooltip: 'toolTip', width: '1%', align: 'center' },
     { name: 'intValue', title: 'Int', format: '' },
-    { name: 'stringValue', title: 'String', format: '', footer: 'footerValue' },
+    { name: 'stringValue', title: 'String', format: '', footer: 'footerValue', header: 'headerValue' },
     { name: 'dateValue', title: 'Countdown', format: 'Countdown' },
     { name: 'dateValue', title: 'Date/Time', format: 'DateTime' },
     { name: 'dateValue', title: 'Date', format: 'Date' },
@@ -74,11 +75,11 @@ export class AppComponent implements OnInit {
     let date = new Date();
 
     let data = new Array<DataModel>();
-    data.push(new DataModel(1, 'row3', 'row 3 footer', new Date(date.getTime() + 30000), date,
+    data.push(new DataModel(1, 'row3', 'row 1 footer', 'row 1 header', new Date(date.getTime() + 30000), date,
       true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**', 'footer **bold**'));
-    data.push(new DataModel(2, 'row2', 'row 2 footer', new Date(date.getTime() + 300000), date,
+    data.push(new DataModel(2, 'row2', 'row 2 footer', 'row 2 header', new Date(date.getTime() + 300000), date,
       true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null));
-    data.push(new DataModel(3, 'row1', 'row 1 footer', new Date(date.getTime() + 3000000), date,
+    data.push(new DataModel(3, 'row1', 'row 3 footer', 'row 3 header', new Date(date.getTime() + 3000000), date,
       true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2** [link](http://google.com)',
         'footer2 **bold** [link](http://google.com)'));
 
