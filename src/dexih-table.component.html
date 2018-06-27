@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div *ngIf="actionsTemplate || selectedItemActionsTemplate || selectedItemsActionsTemplate || ( enableFilter && tableItems?.length > 0)" class="dexih-table-toolbar">
+    <div *ngIf="actionsTemplate || selectedItemActionsTemplate || selectedItemsActionsTemplate || ( enableFilter && tableItems?.length > 0) || tableHeaderTemplate" class="dexih-table-toolbar">
         <div class="form-row">
             <div class="form-group col-md">
                 <div class="btn-toolbar">
@@ -47,6 +47,10 @@
                 </div>
             </div>
         </div>
+        <ng-template *ngIf="tableHeaderTemplate" [ngTemplateOutlet]="tableHeaderTemplate" [ngTemplateOutletContext]="{items: currentSelectedItems}"
+            [ngTemplateOutletContext]="items">
+        </ng-template>
+
     </div>
 
     <div *ngIf="tableItems" [ngClass]="{'table-responsive': enableResponsive}">

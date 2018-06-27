@@ -66,6 +66,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @ContentChild('selectedItemAction') public selectedItemActionsTemplate: TemplateRef<any>;
     @ContentChild('actions') public actionsTemplate: TemplateRef<any>;
     @ContentChild('cell') public cellTemplate: TemplateRef<any>;
+    @ContentChild('tableHeader') public tableHeaderTemplate: TemplateRef<any>;
 
     public filterControl = new FormControl();
     public sortDirection = 1;
