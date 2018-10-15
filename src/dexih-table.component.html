@@ -53,7 +53,7 @@
 
     </div>
 
-    <div *ngIf="tableItems" [ngClass]="{'table-responsive': enableResponsive}">
+    <div *ngIf="tableItems && !hideTable" [ngClass]="{'table-responsive': enableResponsive}">
         <table name="dexih-table" [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
             <thead>
                 <tr *ngIf="currentColumns && enableHeaderRow">
@@ -126,7 +126,7 @@
         </table>
     </div>
 
-    <div *ngIf="!tableItems && !error">
+    <div *ngIf="!tableItems && !error && !hideTable">
         <div class="row">
             <div class="col-lg-9 col-md-7 col-sm-12 col-xs-12">
                 <div class="table-loader-container">

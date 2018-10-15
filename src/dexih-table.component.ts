@@ -50,6 +50,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public heading: string;
     @Input() public dropZones: string[] = [];
     @Input() public loadingMessage = 'Data is loading...';
+    @Input() public hideTable = false;
 
     @Output() rowClick: EventEmitter<any>
         = new EventEmitter<any>();

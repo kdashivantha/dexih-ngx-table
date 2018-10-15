@@ -21,12 +21,13 @@
 </dexih-table>
 <hr/>
 
-
 <dexih-table [dataObservable]="tableData" heading="Table with auto generated column names"></dexih-table>
 <hr/>
 
-
 <dexih-table [dataObservable]="tableData" [columns]="columns" heading="Table with formatted column names"></dexih-table>
+<hr/>
+
+<dexih-table [dataObservable]="tableData" [columns]="columns" heading="Table hidden" [hideTable]="true"></dexih-table>
 <hr/>
 
 <dexih-table [dataObservable]="arrayData" heading="Table with populated from array"></dexih-table>
