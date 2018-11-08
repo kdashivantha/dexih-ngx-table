@@ -84,6 +84,8 @@ export class ColumnOperations {
                     return (new Date(value).toLocaleTimeString());
                 case 'DateTime':
                     return (new Date(value).toLocaleDateString()) + ' ' + (new Date(value).toLocaleTimeString());
+                case 'CharArray':
+                    return [].concat(value).join('');
                 case 'Countdown':
                     if (value instanceof Date) {
                         return this.countDown(value);

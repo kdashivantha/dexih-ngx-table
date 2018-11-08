@@ -12,7 +12,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 // bug: uncomment this when running playground.
 // import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
-import { DexihTableModule,  Column  }  from '../src';
+ import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -27,7 +27,8 @@ class DataModel {
       public toolTip: string,
       public icon: string,
       public markdown: string,
-      public markdownFooter: string
+      public markdownFooter: string,
+      public charArray: string[]
   ) {}
 }
 
@@ -50,6 +51,7 @@ export class AppComponent implements OnInit {
     { name: 'codeValue', title: 'Code', format: 'Code' },
     { name: 'codeValue', title: 'Html', format: 'Html' },
     { name: 'markdown', title: 'Markdown', format: 'Md', footer: 'markdownFooter' },
+    { name: 'charArray', title: 'Char Array', format: 'CharArray'}
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
@@ -76,12 +78,12 @@ export class AppComponent implements OnInit {
 
     let data = new Array<DataModel>();
     data.push(new DataModel(1, 'row3', 'row 1 footer', 'row 1 header', new Date(date.getTime() + 30000), date,
-      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**', 'footer **bold**'));
+      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**', 'footer **bold**', ['a', 'b', 'c']));
     data.push(new DataModel(2, 'row2', 'row 2 footer', 'row 2 header', new Date(date.getTime() + 300000), date,
-      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null));
+      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null, ['a', 'b', 'c']));
     data.push(new DataModel(3, 'row1', 'row 3 footer', 'row 3 header', new Date(date.getTime() + 3000000), date,
       true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2** [link](http://google.com)',
-        'footer2 **bold** [link](http://google.com)'));
+        'footer2 **bold** [link](http://google.com)', ['a', 'b', 'c']));
 
     this._tableData.next(data);
 

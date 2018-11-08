@@ -24,6 +24,14 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.3.12
+
+* Added charArray formatting option, which will format an array ['a','b','c'] as 'abc'
+
+### Release 0.3.11
+
+* Added hideTable attribute, which can be used to hide the table and leave other controls visible.
+
 ### Release 0.3.8
 
 * Added header property to cell data.
@@ -212,6 +220,7 @@ The following properties can be hard coded in the column settings an apply to al
   - `Code` - formats code.
   - `Html` - renders a html snippet.
   - `Md` - renders markdown format.
+  - 'CharArray' - formats an array of chars as a single string (i.e. ['a', 'b', 'c'] formatted as 'abc')
 - `width` - the width to apply to the table column (e.g. 10%, 100px).
 - `align` (`left`, `centre`, `right`) - the text alignment for the column.
 
