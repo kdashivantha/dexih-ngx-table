@@ -9,11 +9,11 @@
         </div>
     </div>
 
-    <div *ngIf="actionsTemplate || selectedItemActionsTemplate || selectedItemsActionsTemplate || ( enableFilter && tableItems?.length > 0) || tableHeaderTemplate" class="dexih-table-toolbar">
+    <div *ngIf="actionsTemplate || selectedItemActionsTemplate || selectedItemsActionsTemplate || ( enableFilter && tableItems?.length > 0 && !hideTable) || tableHeaderTemplate" class="dexih-table-toolbar">
         <div class="form-row">
             <div class="form-group col-md">
                 <div class="btn-toolbar">
-                    <button *ngIf="enableSaveCsv && tableItems" (click)="saveCsv()" class="btn btn btn-primary mr-1" title="Export the current data to a csv file.">
+                    <button *ngIf="enableSaveCsv && tableItems?.length > 0 && !hideTable" (click)="saveCsv()" class="btn btn btn-primary mr-1" title="Export the current data to a csv file.">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8">
                                 <path fill="white" d="M0 0v8h8v-2h-1v1h-6v-6h1v-1h-2zm4 0l1.5 1.5-2.5 2.5 1 1 2.5-2.5 1.5 1.5v-4h-4z" />
                               </svg>                        
@@ -33,7 +33,7 @@
                     </ng-template>
                 </div>
             </div>
-            <div *ngIf="enableFilter && tableItems?.length > 0" class="form-group align-self-end">
+            <div *ngIf="enableFilter && tableItems?.length > 0 && !hideTable" class="form-group align-self-end">
                 <div [ngClass]="{disabled : manualSort}" class="input-group w-auto">
                     <span class="input-group-addon input-group-prepend">
                         <span class="input-group-text">
