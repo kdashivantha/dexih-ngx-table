@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Column, ColumnOperations } from './dexih-table.models';
 
 
@@ -11,6 +11,8 @@ import { Column, ColumnOperations } from './dexih-table.models';
 export class DexihTableCellComponent implements OnInit, OnDestroy {
     @Input() public column: Column;
     @Input() public row: any;
+    @Input() public nodeExpanded = -1;
+    @Output() onNodeClick: EventEmitter<any> = new EventEmitter<any>();
 
     private _interval: any;
 
@@ -21,6 +23,8 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
     public header: string;
 
     private columnOperations = new ColumnOperations();
+
+    public showChild = -1;
 
     constructor() { }
 
@@ -81,6 +85,14 @@ export class DexihTableCellComponent implements OnInit, OnDestroy {
 
     isNumeric(n: any): boolean {
         return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    expand() {
+        this.onNodeClick.emit();
+    }
+
+    collapse() {
+        this.onNodeClick.emit();
     }
 
     getRoute(event: any) {

@@ -78,10 +78,15 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     public tableItems: Array<TableItem>;
     public currentColumns: Column[];
 
+    // array containing column number of expanded nodes in each row
+    public expandedNodes: Array<Number> = null;
+    public tableColumns: number;
+
     public selectedItemsCount: number;
     private selectAllState: boolean;
 
     public columnCount = 1;
+    public preventRowClick = false;
 
     private tableDataSubscription: Subscription;
     private filterSubscription: Subscription;
@@ -147,6 +152,7 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     doLoadData(data: Array<any>) {
         if (data) {
             this.data = data;
+            this.expandedNodes = new Array(data.length);
 
             // console.debug(`key length ${data[0].keys.length}`);
             // if column formatting not specified, then create
@@ -169,6 +175,13 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                     }
                 }
             }
+
+            this.columnCount = this.currentColumns.length +
+                (this.enableMultiSelect ? 1 : 0) +
+                (this.enableManualSort ? 1 : 0) +
+                (this.rowActionTemplate ? 1 : 0) +
+                (this.rowStatusTemplate ? 1 : 0);
+
 
             // reset the tableItems array.
             this.tableItems = new Array(this.data.length);
@@ -231,11 +244,15 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     }
 
     selectRowClick(row: any) {
-        // if there is a selection don't raise the event.
-        let selection = window.getSelection();
-        if (selection.type !== 'Range') {
-            this.rowClick.emit(row);
+        if (!this.preventRowClick) {
+            // if there is a selection don't raise the event.
+            let selection = window.getSelection();
+            if (selection.type !== 'Range') {
+                this.rowClick.emit(row);
+            }
         }
+        this.preventRowClick = false;
+
     }
 
     private updateFilter() {
@@ -350,7 +367,22 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 return formattedValue;
             }
         }).join(',') + '\n';
-    };
+    }
+
+    public nodeClick(row: number, column: number) {
+        this.preventRowClick = true;
+
+        if (this.expandedNodes[row] === column) {
+            this.expandedNodes[row] = -1;
+        } else {
+            this.expandedNodes[row] = column;
+        }
+    }
+
+    public nodeClose(row: number) {
+        this.preventRowClick = true;
+        this.expandedNodes[row] = -1;
+    }
 
     public onDropSuccess($event: any) {
         this.onDrop.emit($event);

@@ -10,9 +10,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 // bug: uncomment this when running playground.
-// import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+ import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
- import { DexihTableModule,  Column  }  from '../src';
+// import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -28,7 +28,16 @@ class DataModel {
       public icon: string,
       public markdown: string,
       public markdownFooter: string,
-      public charArray: string[]
+      public charArray: string[],
+      public childNodes: ChildModel[]
+  ) {}
+}
+
+class ChildModel {
+  constructor(
+    public child1: string,
+    public child2: string,
+    public child3: string
   ) {}
 }
 
@@ -51,7 +60,12 @@ export class AppComponent implements OnInit {
     { name: 'codeValue', title: 'Code', format: 'Code' },
     { name: 'codeValue', title: 'Html', format: 'Html' },
     { name: 'markdown', title: 'Markdown', format: 'Md', footer: 'markdownFooter' },
-    { name: 'charArray', title: 'Char Array', format: 'CharArray'}
+    { name: 'charArray', title: 'Char Array', format: 'CharArray'},
+    { name: 'childNodes', title: 'Node', format: 'Node', childColumns: [
+      { name: 'child1', title: 'child1', format: '' },
+      { name: 'child2', title: 'child2', format: '' },
+      { name: 'child3', title: 'child3', format: '' },
+    ]}
   ];
 
   private _tableData = new BehaviorSubject<Array<DataModel>>(null);
@@ -76,14 +90,17 @@ export class AppComponent implements OnInit {
 
     let date = new Date();
 
+    let childNodes = [new ChildModel('child1', 'child2', 'child3'), new ChildModel('r2child1', 'r2child2', 'r2child3')];
+
     let data = new Array<DataModel>();
     data.push(new DataModel(1, 'row3', 'row 1 footer', 'row 1 header', new Date(date.getTime() + 30000), date,
-      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**', 'footer **bold**', ['a', 'b', 'c']));
+      true, '<b>bold 1</b>', 'tip 1', 'fa fa-spin fa-cog', 'markdown **bold**', 'footer **bold**', ['a', 'b', 'c'],
+      childNodes));
     data.push(new DataModel(2, 'row2', 'row 2 footer', 'row 2 header', new Date(date.getTime() + 300000), date,
-      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null, ['a', 'b', 'c']));
+      true, '<b>bold 1</b>', 'tip 2', 'fa fa-spin fa-cog', null, null, ['a', 'b', 'c'], childNodes));
     data.push(new DataModel(3, 'row1', 'row 3 footer', 'row 3 header', new Date(date.getTime() + 3000000), date,
       true, '<b>bold 1</b>', 'tip 3', 'fa fa-spin fa-cog', 'markdown **bold 2** [link](http://google.com)',
-        'footer2 **bold** [link](http://google.com)', ['a', 'b', 'c']));
+        'footer2 **bold** [link](http://google.com)', ['a', 'b', 'c'], childNodes));
 
     this._tableData.next(data);
 

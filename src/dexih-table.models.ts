@@ -17,6 +17,7 @@ export class Column {
     public iconClass: string;
     public footer: string;
     public header: string;
+    public childColumns: Column[]
 }
 
 export class ColumnOperations {
