@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DndModule } from 'ng2-dnd';
 import { NgxMdModule } from 'ngx-md';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { DexihTableCellComponent } from './dexih-table-cell.component';
 import { DexihTableComponent } from './dexih-table.component';
@@ -11,8 +11,8 @@ import { DexihTableComponent } from './dexih-table.component';
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
-    DndModule, // .forRoot(),
     NgxMdModule, // .forRoot(),
+    DragDropModule
   ],
   declarations: [
     DexihTableComponent,

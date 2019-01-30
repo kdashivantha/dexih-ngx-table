@@ -24,6 +24,12 @@ dexih-ngx-table is an Angular (2+) component for building data driven tables.
 
 ## Releases Summary
 
+### Release 0.4.0
+
+* BREAKING - dependencies updated to use angular 7.x
+* BREAKING - removed ng2-dnd dependency.  Drag and drop now uses Angular material drop-drop library (cdk).
+
+
 ### Release 0.3.12
 
 * Added charArray formatting option, which will format an array ['a','b','c'] as 'abc'
@@ -259,7 +265,7 @@ Table styling:
 Customizing Cells
 - `error` (null default) - If set, displays the specified error message at the top of the table.
 - `heading` (null default) - If set, displays the specified heading message at the top of the table.
-- `dropZones` (empty array default) - Array of dropZones which will trigger the `onDrop` event.  See [ng2-dnd](https://github.com/akserg/ng2-dnd) for documentation on drag/drop.
+- `cdkDropList`  - Reference to a cdkDropList for the table.  A drop will trigger the `onDrop` event.  See [material](https://material.angular.io/cdk/drag-drop/examples) for documentation on drag/drop.
 
 The templates objects can be populated using `ng-template` tags within the `dexih-table` selection, as in the following sample:
 
@@ -310,7 +316,7 @@ The following events can be used to response to table actions:
 - `onSelectedChange` (item containing selected items) - called when a row selection changes.
 - `onSortChanged` (array of sorted items) - called when a manual drag/drop sort is completed.
 - `onSortChanged` (array of sorted items) - called when a manual drag/drop sort is completed.
-- `onDrop` (drop data) - called when data is dropped on the table.  Use the `dropZones` attribute to configure items that will trigger the event.
+- `onDrop` (drop data) - called when data is dropped on the table.  Passes the event data from the cdkDropList event.
 
 Events are used as follows in the `dexih-table` declaration:
 
@@ -323,12 +329,26 @@ Events are used as follows in the `dexih-table` declaration:
 </dexih-table>
 ```
 
+Drag and drop can be used as follows:
+
+```xml
+<div cdkDropList [cdkDropListConnectedTo]="[listOne.cdkDropList]" cdkDropListData="drop data">
+    <div cdkDrag >
+        <button class="btn btn-primary">
+            drag this to table.
+        </button>
+    </div>
+</div>
+
+<dexih-table [dataObservable]="tableData" (onDrop)="dropped($event)" [enableSort]="true" [enableManualSort]="true" #listOne heading="droppable table">
+ </dexih-table>
+ ```
 ## Credits
 
 Thanks to the following projects:
 
 * [jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library) - used as the baseline to package and distribute this library.
-* [ng2-dnd](https://github.com/akserg/ng2-dnd) - used for the drag and drop and table re-order capabilities.
+* [ngx-md](https://github.com/dimpu/ngx-md) - used for rendering markdown text.
 
 ## License
 

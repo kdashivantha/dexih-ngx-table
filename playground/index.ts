@@ -2,17 +2,17 @@
  * This is only for local test
  */
 import { BrowserModule } from '@angular/platform-browser';
-import {DndModule} from 'ng2-dnd';
 import { NgxMdModule } from 'ngx-md';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 // bug: uncomment this when running playground.
- import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
+// import { DexihTableModule,  Column  }  from 'dexih-ngx-table';
 // uncomment this when running tests.
-// import { DexihTableModule,  Column  }  from '../src';
+import { DexihTableModule,  Column  }  from '../src';
 
 class DataModel {
   constructor(
@@ -45,7 +45,7 @@ class ChildModel {
   selector: 'app-root',
   templateUrl: 'app.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title: string;
 
   columns = [
@@ -77,6 +77,8 @@ export class AppComponent implements OnInit {
   private _arrayData = new BehaviorSubject<string[][]>(null);
   arrayData: Observable<string[][]> = this._arrayData.asObservable();
   public arrayColumns: Array<any>;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.arrayColumns = [
@@ -113,6 +115,10 @@ export class AppComponent implements OnInit {
     }, 5000);
   }
 
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
   public selectedItems(items: Array<DataModel>) {
     window.alert('selected ' + items.map(c => c.intValue).join(', ') )
   }
@@ -121,10 +127,15 @@ export class AppComponent implements OnInit {
     window.alert('selected ' + item.intValue )
   }
 
-  public dropped(item: any) {
-    window.alert('dropped: ' + item.dragData);
+  dropped(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      alert('ISSUE: same container');
+    } else {
+      alert(`insert row: ${event.currentIndex} data: ${event.previousContainer.data}`);
+    }
   }
 }
+
 
 
 @NgModule({
@@ -133,8 +144,8 @@ export class AppComponent implements OnInit {
     imports: [
       BrowserModule,
       DexihTableModule,
-      DndModule.forRoot(),
-      NgxMdModule.forRoot()
+      NgxMdModule.forRoot(),
+      DragDropModule
     ]
   })
   class AppModule {}

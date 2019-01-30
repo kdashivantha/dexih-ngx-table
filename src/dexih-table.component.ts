@@ -13,13 +13,14 @@ import {
     Output,
     SimpleChanges,
     TemplateRef,
-    KeyValueDiffer
+    ViewChild
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { Column, ColumnOperations, TableItem } from './dexih-table.models';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'dexih-table',
@@ -48,18 +49,15 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @Input() public tableClass = 'table table-striped table-bordered table-hover m-0';
     @Input() public error: string;
     @Input() public heading: string;
-    @Input() public dropZones: string[] = [];
+    @Input() public dropListConnectedTo;
+    @Input() public dropListEnterPredicate;
     @Input() public loadingMessage = 'Data is loading...';
     @Input() public hideTable = false;
 
-    @Output() rowClick: EventEmitter<any>
-        = new EventEmitter<any>();
-    @Output() onSelectedChange: EventEmitter<Array<any>>
-        = new EventEmitter<Array<any>>();
-    @Output() public onSortChanged: EventEmitter<Array<any>>
-        = new EventEmitter<Array<any>>();
-
-    @Output() public onDrop: EventEmitter<any> = new EventEmitter<any>();
+    @Output() rowClick: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onSelectedChange: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
+    @Output() public onSortChanged: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
+    @Output() public onDrop: EventEmitter<CdkDragDrop<string[]>> = new EventEmitter();
 
     @ContentChild('rowAction') public rowActionTemplate: TemplateRef<any>;
     @ContentChild('rowStatus') public rowStatusTemplate: TemplateRef<any>;
@@ -68,6 +66,8 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     @ContentChild('actions') public actionsTemplate: TemplateRef<any>;
     @ContentChild('cell') public cellTemplate: TemplateRef<any>;
     @ContentChild('tableHeader') public tableHeaderTemplate: TemplateRef<any>;
+
+    @ViewChild('cdkDropList') public cdkDropList: ElementRef;
 
     public filterControl = new FormControl();
     public sortDirection = 1;
@@ -233,14 +233,20 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
         }
     }
 
-    manualSortChange() {
-        let newData = new Array<any>();
+    manualSortChange(event: CdkDragDrop<string[]>) {
+        if (event.container === event.previousContainer) {
+            moveItemInArray(this.tableItems, event.previousIndex, event.currentIndex);
 
-        this.tableItems.forEach((tableItem, index) => {
-            newData.push(this.data[tableItem.index]);
-        });
+            let newData = new Array<any>();
 
-        this.onSortChanged.emit(newData);
+            this.tableItems.forEach((tableItem, index) => {
+                newData.push(this.data[tableItem.index]);
+            });
+
+            this.onSortChanged.emit(newData);
+        } else {
+            this.onDrop.emit(event);
+        }
     }
 
     selectRowClick(row: any) {
@@ -382,10 +388,6 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
     public nodeClose(row: number) {
         this.preventRowClick = true;
         this.expandedNodes[row] = -1;
-    }
-
-    public onDropSuccess($event: any) {
-        this.onDrop.emit($event);
     }
 
 }

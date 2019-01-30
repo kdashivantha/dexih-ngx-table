@@ -96,15 +96,16 @@
 
 <hr/>
 
-<button class="btn btn-primary" dnd-draggable [dragEnabled]="true" [dropZones]="['zone']" dragData="drop worked">
-    drag this to table.
-</button>
-<button class="btn btn-primary" dnd-draggable [dragEnabled]="true" [dropZones]="['zone1']" dragData="drop shouldn't have worked'">
-    this drag should not work
-</button>
+<div cdkDropList [cdkDropListConnectedTo]="[listOne.cdkDropList]" cdkDropListData="drop data">
+    <div cdkDrag >
+        <button class="btn btn-primary">
+            drag this to table.
+        </button>
+    </div>
+</div>
 
-<dexih-table [dataObservable]="tableData" (onDrop)="dropped($event)" [dropZones]="['zone']" [enableSort]="true" [enableManualSort]="true"
- heading="Droppable Table"></dexih-table>
+<dexih-table [dataObservable]="tableData" (onDrop)="dropped($event)" [enableSort]="true" [enableManualSort]="true" #listOne
+ heading="droppable table"></dexih-table>
 <hr/>
 
 <hr/>

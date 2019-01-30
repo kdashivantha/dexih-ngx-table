@@ -43,7 +43,7 @@
                                 </span>
                     </span>
                     <input [formControl]="filterControl" class="form-control input-md" placeholder="Search..." type="search"
-                        name="filterString" />
+                        name="filterString"  />
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
     </div>
 
     <div *ngIf="tableItems && !hideTable" [ngClass]="{'table-responsive': enableResponsive}">
-        <table name="dexih-table" [class]="tableClass" width="100%" dnd-sortable-container [sortableData]="tableItems">
+        <table name="dexih-table" #table [class]="tableClass" width="100%" cdkDropList #cdkDropList="cdkDropList" (cdkDropListDropped)="manualSortChange($event)" [cdkDropListConnectedTo]="dropListConnectedTo">
             <thead>
                 <tr *ngIf="currentColumns && enableHeaderRow">
                     <th *ngIf="enableMultiSelect" width="1%">
@@ -88,18 +88,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngIf="tableItems.length == 0 || !currentColumns" dnd-droppable [dropZones]="dropZones" (onDropSuccess)="onDropSuccess($event)">
+                <tr *ngIf="tableItems.length == 0 || !currentColumns">
                     <td [attr.colspan]="columnCount">There are no rows available.</td>
                 </tr>
                 <ng-template ngFor let-tableItem [ngForOf]="tableItems" let-i="index">
-                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected" dnd-droppable [dropZones]="dropZones" (onDropSuccess)="onDropSuccess($event)">
+                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected" cdkDrag >
                         <td *ngIf="enableMultiSelect">
                             <input type="checkbox" [(ngModel)]="tableItem.isSelected" (ngModelChange)="itemSelected(true)">
                         </td>
                         <td *ngIf="enableManualSort">
-                            <button class="btn btn-sm btn-primary" dnd-sortable [sortableIndex]="i" (onDropSuccess)="manualSortChange()" title="Drag button to move row to another position">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8">
-                                    <path fill="white" d="M2 0v6h-2l2.5 2 2.5-2h-2v-6h-1zm2 0v1h2v-1h-2zm0 2v1h3v-1h-3zm0 2v1h4v-1h-4z" />
+                            <button class="btn btn-sm btn-primary" title="Drag button to move row to another position" cdkDragHandle>
+                                <svg width="15px" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
                                 </svg>
                             </button>
                         </td>
