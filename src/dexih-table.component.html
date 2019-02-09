@@ -92,7 +92,7 @@
                     <td [attr.colspan]="columnCount">There are no rows available.</td>
                 </tr>
                 <ng-template ngFor let-tableItem [ngForOf]="tableItems" let-i="index">
-                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected" cdkDrag >
+                    <tr name="dexih-table-row" *ngIf="!tableItem.isFiltered" [class.active]="tableItem?.isSelected" cdkDrag>
                         <div *cdkDragPreview class="container">
                             <div class="row">
                                 <div class="col-sm list-group-item list-group-item-secondary" *ngFor="let column of currentColumns | slice:0:5; let columnIndex = index;">
@@ -103,7 +103,7 @@
                         <td *ngIf="enableMultiSelect">
                             <input type="checkbox" [(ngModel)]="tableItem.isSelected" (ngModelChange)="itemSelected(true)">
                         </td>
-                        <td *ngIf="enableManualSort">
+                        <td [hidden]="!enableManualSort" >
                             <button class="btn btn-sm btn-primary" title="Drag button to move row to another position" cdkDragHandle>
                                 <svg width="12px" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>

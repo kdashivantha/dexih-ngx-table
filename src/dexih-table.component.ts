@@ -349,7 +349,6 @@ export class DexihTableComponent implements OnInit, OnDestroy, OnChanges, AfterV
                 document.body.removeChild(link);
             }
         }
-
     }
 
     private processRow(row: any): string {
